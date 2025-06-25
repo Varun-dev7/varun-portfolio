@@ -6,65 +6,66 @@
   <title>Varun Gupta | Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-  <header class="bg-white shadow p-6 text-center">
-    <h1 class="text-3xl font-bold text-blue-700">Varun Gupta</h1>
-    <p class="text-sm">Full Stack Developer | React.js & C#</p>
-    <div class="mt-2 text-blue-600">
-      <a href="mailto:varungupta00v7@gmail.com" class="mr-4">📧 Email</a>
-      <a href="https://www.linkedin.com/in/varun-gupta-a272a8346" target="_blank">🔗 LinkedIn</a>
+<body class="bg-white text-gray-900 font-sans">
+  <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 text-center shadow">
+    <h1 class="text-4xl font-bold">Varun Gupta</h1>
+    <p class="mt-2 text-lg">Full Stack Developer – React.js & C#</p>
+    <div class="mt-3 flex justify-center gap-4 text-sm">
+      <a href="mailto:varungupta00v7@gmail.com" class="hover:underline">📧 varungupta00v7@gmail.com</a>
+      <a href="https://www.linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="hover:underline">🔗 LinkedIn</a>
     </div>
   </header>
 
-  <main class="max-w-3xl mx-auto p-6">
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-blue-600 mb-2">About Me</h2>
-      <p>
+  <main class="max-w-5xl mx-auto px-6 py-10">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-blue-700 mb-4">About Me</h2>
+      <p class="text-gray-700 leading-relaxed">
         I’m a passionate Full Stack Developer with 1 year of experience building scalable web applications using
-        <strong>React.js</strong> and <strong>C#</strong>. I enjoy solving real-world problems through clean architecture and intuitive design. Whether it's a
-        real-time healthcare app like <strong>Doctora</strong> or an e-learning system like <strong>AcademyGo</strong>, I focus on delivering efficient,
-        user-focused solutions.
+        <strong>React.js</strong> and <strong>C#</strong>. I enjoy solving real-world problems through clean architecture and intuitive design.
+        Whether it's a real-time healthcare app like <strong>Doctora</strong> or an e-learning system like <strong>AcademyGo</strong>,
+        I focus on delivering efficient, user-focused solutions.
       </p>
     </section>
 
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-blue-600 mb-2">Projects</h2>
-      <div class="mb-4">
-        <h3 class="font-bold">Doctora App</h3>
-        <p>
-          Real-time doctor-patient interaction platform built with React, Tailwind CSS, .NET Core, and SignalR. Features live
-          chat, OPD scheduling, and mobile-ready design.
-        </p>
-      </div>
-      <div class="mb-4">
-        <h3 class="font-bold">AcademyGo – E-Learning Platform</h3>
-        <p>
-          Backend system using C# to manage batches, courses, MCQs, test results, trainees, and admin tools. Includes REST APIs,
-          authentication, and Azure DevOps integration.
-        </p>
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-blue-700 mb-4">Projects</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border rounded-xl p-5 shadow hover:shadow-md transition">
+          <h3 class="text-xl font-bold mb-2">Doctora App</h3>
+          <p class="text-sm text-gray-700">
+            Real-time doctor-patient interaction platform built with React, Tailwind CSS, .NET Core, and SignalR. Features include live
+            chat, OPD scheduling, and multi-device support.
+          </p>
+        </div>
+        <div class="border rounded-xl p-5 shadow hover:shadow-md transition">
+          <h3 class="text-xl font-bold mb-2">AcademyGo – E-Learning Platform</h3>
+          <p class="text-sm text-gray-700">
+            Backend system built with C# to manage batches, courses, tests, MCQs, and users. Supports REST APIs, role-based access,
+            and CI/CD with Azure DevOps.
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-blue-600 mb-2">Skills</h2>
-      <ul class="list-disc list-inside">
-        <li>Languages: HTML5, CSS, JavaScript, C, C#</li>
-        <li>Frameworks: React.js, .NET Core, Tailwind CSS</li>
-        <li>Tools: Git, GitHub, Azure DevOps, Postman</li>
-        <li>Database: MySQL</li>
-      </ul>
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-blue-700 mb-4">Skills</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-800">
+        <div><strong>Languages:</strong> HTML5, CSS, JavaScript, C, C#</div>
+        <div><strong>Frameworks:</strong> React.js, .NET Core, Tailwind CSS</div>
+        <div><strong>Tools:</strong> Git, GitHub, Postman, Azure DevOps</div>
+        <div><strong>Database:</strong> MySQL</div>
+      </div>
     </section>
 
-    <section>
-      <h2 class="text-xl font-semibold text-blue-600 mb-2">Download Resume</h2>
-      <a href="resume.pdf" download class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-        📄 Download PDF
+    <section class="text-center">
+      <a href="resume.pdf" download class="bg-blue-700 text-white px-5 py-3 rounded-lg shadow hover:bg-blue-800 transition">
+        📄 Download Resume
       </a>
     </section>
   </main>
 
-  <footer class="text-center p-4 mt-8 text-sm text-gray-600">
-    &copy; 2025 Varun Gupta. All rights reserved.
+  <footer class="text-center p-6 text-sm text-gray-500">
+    &copy; 2025 Varun Gupta · Built with ❤️ and Tailwind CSS
   </footer>
 </body>
 </html>
