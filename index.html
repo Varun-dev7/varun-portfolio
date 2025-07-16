@@ -5,131 +5,377 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Varun Gupta | Full Stack Developer</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .fade-enter {
-      opacity: 0;
-      transform: translateY(20px);
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
     }
-    .fade-enter-active {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .section-hidden {
-      display: none;
+    .card-hover {
+      transition: all 0.3s ease;
     }
-    .section-visible {
-      display: block;
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    .active-nav {
+      color: #3b82f6;
+      border-bottom: 2px solid #3b82f6;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white font-sans">
-  <header class="bg-gray-800 p-4 shadow-md sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Varun Gupta</h1>
-      <nav class="space-x-4">
-        <button onclick="showSection('about')" class="hover:text-blue-400">About</button>
-        <button onclick="showSection('projects')" class="hover:text-blue-400">Projects</button>
-        <button onclick="showSection('skills')" class="hover:text-blue-400">Skills</button>
-        <button onclick="showSection('contact')" class="hover:text-blue-400">Contact</button>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-gray-800 py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+          <span class="font-bold">VG</span>
+        </div>
+        <h1 class="text-xl font-bold">Varun Gupta</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6">
+        <button onclick="showSection('hero')" class="nav-btn active-nav py-1">Home</button>
+        <button onclick="showSection('skills')" class="nav-btn py-1">Skills</button>
+        <button onclick="showSection('projects')" class="nav-btn py-1">Projects</button>
+        <button onclick="showSection('contact')" class="bg-blue-600 px-4 py-1 rounded hover:bg-blue-700 transition">Contact</button>
       </nav>
+      <button class="md:hidden text-xl" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-gray-800 py-2 px-4">
+      <button onclick="showSection('hero')" class="block w-full text-left py-2">Home</button>
+      <button onclick="showSection('skills')" class="block w-full text-left py-2">Skills</button>
+      <button onclick="showSection('projects')" class="block w-full text-left py-2">Projects</button>
+      <button onclick="showSection('contact')" class="block w-full text-left py-2">Contact</button>
     </div>
   </header>
 
-  <main class="transition-transform duration-500 ease-in-out">
-    <!-- About Section -->
-    <section id="about" class="section-visible py-12 px-6 md:px-20">
-      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
-        <h2 class="text-3xl font-semibold mb-4">About Me</h2>
-        <p class="text-lg leading-relaxed mb-6">I'm a Full Stack Developer with 1 year of experience working on real-world web applications using React.js, .NET Core, SQL, Tailwind CSS, and SignalR. I enjoy solving complex problems and building efficient, scalable solutions that deliver real value to users.</p>
-        <div class="bg-gray-800 p-4 rounded-lg">
-          <h3 class="text-xl font-bold mb-2">Experience at Cubicle Eight</h3>
-          <p class="text-sm text-gray-300">Worked as a Full Stack Developer for 1 year, contributing to healthcare tech projects like the Doctora App. Built secure, scalable systems using .NET Core, SignalR, React.js, and SQL. Responsible for full-cycle development, including real-time communication modules, state-based patient management, and frontend UI with Tailwind CSS.</p>
+  <!-- Main Content -->
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section id="hero" class="section-active py-12 px-4 md:px-8 fade-in">
+      <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Varun Gupta</h2>
+          <h3 class="text-2xl md:text-3xl text-blue-400 mb-6">Full Stack Developer</h3>
+          <p class="text-lg mb-8 leading-relaxed">
+            I build efficient, scalable web applications with 1 year of professional experience using modern technologies like React, .NET Core, and cloud services.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition">Hire Me</a>
+            <a href="./resume.pdf" class="border border-white hover:bg-white hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition">Download CV</a>
+          </div>
         </div>
-        <a href="./resume.pdf" class="inline-block mt-4 px-6 py-2 bg-blue-600 rounded hover:bg-blue-700">Download Resume</a>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section-hidden py-12 px-6 md:px-20">
-      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
-        <h2 class="text-3xl font-semibold mb-6">Projects</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-gray-700 p-6 rounded-xl">
-            <h3 class="text-xl font-bold">Doctora App</h3>
-            <p class="mt-2">Healthcare OPD management system with real-time patient-doctor interaction built using React.js, .NET Core, SignalR, and SQL.</p>
-            <div class="mt-4 space-x-4">
-              <a href="https://www.doctora.live" target="_blank" class="text-blue-400 hover:underline">Live Demo</a>
-              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
-            </div>
-          </div>
-
-          <div class="bg-gray-700 p-6 rounded-xl">
-            <h3 class="text-xl font-bold">AcademyGo</h3>
-            <p class="mt-2">An e-learning backend API with features for batch, course, test, and trainee management. Built with .NET Core, SQL, and Azure DevOps.</p>
-            <div class="mt-4">
-              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
-            </div>
-          </div>
-
-          <div class="bg-gray-700 p-6 rounded-xl">
-            <h3 class="text-xl font-bold">Task Manager App</h3>
-            <p class="mt-2">A responsive web app to manage personal and team-based tasks with features like deadline reminders, status filters, and modal-based editing. Built with HTML, JavaScript, and Tailwind CSS.</p>
-            <div class="mt-4">
-              <a href="https://github.com/Varun-dev7/nexus-task-manager" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
-            </div>
+        <div class="md:w-1/2 flex justify-center">
+          <div class="relative">
+            <div class="w-64 h-64 md:w-80 md:h-80 bg-blue-600 rounded-full opacity-20 absolute -z-10 top-4 left-4"></div>
+            <img src="https://via.placeholder.com/400" alt="Varun Gupta" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-blue-600">
           </div>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section-hidden py-12 px-6 md:px-20">
-      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
-        <h2 class="text-3xl font-semibold mb-6">Skills</h2>
-        <ul class="grid grid-cols-2 md:grid-cols-3 gap-4 list-disc list-inside">
-          <li>React.js</li>
-          <li>.NET Core</li>
-          <li>SignalR</li>
-          <li>SQL / MySQL</li>
-          <li>REST APIs</li>
-          <li>Tailwind CSS</li>
-          <li>Git & GitHub</li>
-          <li>Azure DevOps</li>
-          <li>HTML5 / CSS / JavaScript</li>
-        </ul>
+    <section id="skills" class="section-hidden py-12 px-4 md:px-8">
+      <div class="container mx-auto max-w-6xl">
+        <h2 class="text-3xl font-bold mb-12 text-center">My Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fab fa-react"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">React.js</h3>
+            <p class="text-gray-300">Building interactive UIs with reusable components</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">.NET Core</h3>
+            <p class="text-gray-300">Robust backend services and APIs</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fas fa-database"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">SQL</h3>
+            <p class="text-gray-300">Database design and optimization</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">SignalR</h3>
+            <p class="text-gray-300">Real-time communication features</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fab fa-css3-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Tailwind CSS</h3>
+            <p class="text-gray-300">Modern, responsive styling</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fab fa-git-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Git</h3>
+            <p class="text-gray-300">Version control and collaboration</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fab fa-aws"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Azure DevOps</h3>
+            <p class="text-gray-300">CI/CD pipelines and deployment</p>
+          </div>
+          
+          <!-- Skill Card -->
+          <div class="bg-gray-800 p-6 rounded-xl card-hover">
+            <div class="text-blue-400 text-4xl mb-4">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">REST APIs</h3>
+            <p class="text-gray-300">Designing efficient endpoints</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-hidden py-12 px-4 md:px-8">
+      <div class="container mx-auto max-w-6xl">
+        <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Project 1 -->
+          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+            <div class="h-48 bg-blue-600 flex items-center justify-center">
+              <i class="fas fa-user-md text-6xl text-white"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Doctora App</h3>
+              <p class="text-gray-300 mb-4">Healthcare OPD management system with real-time patient-doctor interaction</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">React.js</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">.NET Core</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SignalR</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
+              </div>
+              <div class="flex space-x-4">
+                <a href="https://www.doctora.live" target="_blank" class="text-blue-400 hover:underline flex items-center">
+                  <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                </a>
+                <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center">
+                  <i class="fab fa-github mr-2"></i> Code
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 2 -->
+          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+            <div class="h-48 bg-purple-600 flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-6xl text-white"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">AcademyGo</h3>
+              <p class="text-gray-300 mb-4">E-learning backend API with batch, course, test, and trainee management</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">.NET Core</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Azure DevOps</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">REST API</span>
+              </div>
+              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center">
+                <i class="fab fa-github mr-2"></i> Code
+              </a>
+            </div>
+          </div>
+          
+          <!-- Project 3 -->
+          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+            <div class="h-48 bg-green-600 flex items-center justify-center">
+              <i class="fas fa-tasks text-6xl text-white"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Task Manager App</h3>
+              <p class="text-gray-300 mb-4">Responsive web app for personal and team-based task management</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">HTML5</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">CSS3</span>
+                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+              </div>
+              <a href="https://github.com/Varun-dev7/nexus-task-manager" target="_blank" class="text-blue-400 hover:underline flex items-center">
+                <i class="fab fa-github mr-2"></i> Code
+              </a>
+            </div>
+          </div>
+          
+          <!-- Project 4 -->
+          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
+            <div class="h-48 bg-yellow-600 flex items-center justify-center">
+              <i class="fas fa-code text-6xl text-white"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">More Projects</h3>
+              <p class="text-gray-300 mb-4">Check out my GitHub for additional projects and contributions</p>
+              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center">
+                <i class="fab fa-github mr-2"></i> GitHub Profile
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-hidden py-12 px-6 md:px-20">
-      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
-        <h2 class="text-3xl font-semibold mb-6">Contact</h2>
-        <p>Email: <a href="mailto:varungupta00v7@gmail.com" class="text-blue-400 hover:underline">varungupta00v7@gmail.com</a></p>
-        <p>Phone: <span class="text-white">+91-8303843172</span></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-blue-400 hover:underline">linkedin.com/in/varun-gupta-a272a8346</a></p>
+    <section id="contact" class="section-hidden py-12 px-4 md:px-8">
+      <div class="container mx-auto max-w-4xl">
+        <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
+        <div class="bg-gray-800 rounded-xl p-8">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  <div class="bg-blue-600 p-3 rounded-full mr-4">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <p class="text-gray-400">Email</p>
+                    <a href="mailto:varungupta00v7@gmail.com" class="hover:text-blue-400">varungupta00v7@gmail.com</a>
+                  </div>
+                </div>
+                
+                <div class="flex items-center">
+                  <div class="bg-blue-600 p-3 rounded-full mr-4">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div>
+                    <p class="text-gray-400">Phone</p>
+                    <p>+91-8303843172</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center">
+                  <div class="bg-blue-600 p-3 rounded-full mr-4">
+                    <i class="fab fa-linkedin-in"></i>
+                  </div>
+                  <div>
+                    <p class="text-gray-400">LinkedIn</p>
+                    <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="hover:text-blue-400">linkedin.com/in/varun-gupta</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-semibold mb-4">Send Me a Message</h3>
+              <form class="space-y-4">
+                <div>
+                  <label for="name" class="block mb-1">Name</label>
+                  <input type="text" id="name" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div>
+                  <label for="email" class="block mb-1">Email</label>
+                  <input type="email" id="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div>
+                  <label for="message" class="block mb-1">Message</label>
+                  <textarea id="message" rows="4" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+                
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition w-full">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="bg-gray-800 text-center text-sm py-4">
-    &copy; 2024 Varun Gupta. All rights reserved.
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-6">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://github.com/Varun-dev7" target="_blank" class="text-gray-400 hover:text-white text-xl">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-gray-400 hover:text-white text-xl">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:varungupta00v7@gmail.com" class="text-gray-400 hover:text-white text-xl">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      <p>&copy; 2024 Varun Gupta. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
+    // Navigation functionality
     function showSection(sectionId) {
-      const sections = document.querySelectorAll('main section');
-      sections.forEach(sec => {
-        sec.classList.add('section-hidden');
-        sec.classList.remove('section-visible');
+      // Hide all sections
+      document.querySelectorAll('main section').forEach(section => {
+        section.classList.remove('section-active', 'fade-in');
+        section.classList.add('section-hidden');
       });
-      const active = document.getElementById(sectionId);
-      active.classList.remove('section-hidden');
-      active.classList.add('section-visible', 'fade-enter');
+      
+      // Show selected section
+      const section = document.getElementById(sectionId);
+      section.classList.remove('section-hidden');
+      section.classList.add('section-active');
+      
+      // Trigger fade-in animation
       setTimeout(() => {
-        active.classList.add('fade-enter-active');
+        section.classList.add('fade-in');
       }, 10);
+      
+      // Update active nav button
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active-nav');
+      });
+      
+      if (sectionId !== 'contact') {
+        const activeBtn = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
+        if (activeBtn) activeBtn.classList.add('active-nav');
+      }
+      
+      // Close mobile menu if open
+      document.getElementById('mobileMenu').classList.add('hidden');
     }
+    
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+    
+    // Set hero as default section
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('hero');
+    });
   </script>
 </body>
 </html>
