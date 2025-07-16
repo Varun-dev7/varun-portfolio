@@ -5,76 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Varun Gupta | Full Stack Developer</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .fade-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .section-hidden {
+      display: none;
+    }
+    .section-visible {
+      display: block;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
-  <!-- Header -->
-  <header class="bg-gray-800 p-4 shadow-md">
+<body class="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white font-sans">
+  <header class="bg-gray-800 p-4 shadow-md sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">Varun Gupta</h1>
       <nav class="space-x-4">
-        <a href="#about" class="hover:text-blue-400">About</a>
-        <a href="#projects" class="hover:text-blue-400">Projects</a>
-        <a href="#skills" class="hover:text-blue-400">Skills</a>
-        <a href="#contact" class="hover:text-blue-400">Contact</a>
+        <button onclick="showSection('about')" class="hover:text-blue-400">About</button>
+        <button onclick="showSection('projects')" class="hover:text-blue-400">Projects</button>
+        <button onclick="showSection('skills')" class="hover:text-blue-400">Skills</button>
+        <button onclick="showSection('contact')" class="hover:text-blue-400">Contact</button>
       </nav>
     </div>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="py-12 px-4 md:px-20">
-    <h2 class="text-3xl font-semibold mb-4">About Me</h2>
-    <p class="text-lg leading-relaxed">I'm a Full Stack Developer with 1 year of experience working on real-world web applications using React.js, .NET Core, SQL, Tailwind CSS, and SignalR. I enjoy solving complex problems and building efficient, scalable solutions that deliver real value to users.</p>
-    <a href="./resume.pdf" class="inline-block mt-4 px-6 py-2 bg-blue-600 rounded hover:bg-blue-700">Download Resume</a>
-  </section>
+  <main class="transition-transform duration-500 ease-in-out">
+    <!-- About Section -->
+    <section id="about" class="section-visible py-12 px-6 md:px-20">
+      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+        <h2 class="text-3xl font-semibold mb-4">About Me</h2>
+        <p class="text-lg leading-relaxed mb-6">I'm a Full Stack Developer with 1 year of experience working on real-world web applications using React.js, .NET Core, SQL, Tailwind CSS, and SignalR. I enjoy solving complex problems and building efficient, scalable solutions that deliver real value to users.</p>
+        <div class="bg-gray-800 p-4 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Experience at Cubicle Eight</h3>
+          <p class="text-sm text-gray-300">Worked as a Full Stack Developer for 1 year, contributing to healthcare tech projects like the Doctora App. Built secure, scalable systems using .NET Core, SignalR, React.js, and SQL. Responsible for full-cycle development, including real-time communication modules, state-based patient management, and frontend UI with Tailwind CSS.</p>
+        </div>
+        <a href="./resume.pdf" class="inline-block mt-4 px-6 py-2 bg-blue-600 rounded hover:bg-blue-700">Download Resume</a>
+      </div>
+    </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-12 px-4 md:px-20 bg-gray-800">
-    <h2 class="text-3xl font-semibold mb-6">Projects</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="bg-gray-700 p-6 rounded-lg">
-        <h3 class="text-xl font-bold">Doctora App</h3>
-        <p class="mt-2">Healthcare OPD management system with real-time patient-doctor interaction built using React.js, .NET Core, SignalR, and SQL.</p>
-        <div class="mt-4 space-x-4">
-          <a href="https://www.doctora.live" target="_blank" class="text-blue-400 hover:underline">Live Demo</a>
-          <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
+    <!-- Projects Section -->
+    <section id="projects" class="section-hidden py-12 px-6 md:px-20">
+      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+        <h2 class="text-3xl font-semibold mb-6">Projects</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gray-700 p-6 rounded-xl">
+            <h3 class="text-xl font-bold">Doctora App</h3>
+            <p class="mt-2">Healthcare OPD management system with real-time patient-doctor interaction built using React.js, .NET Core, SignalR, and SQL.</p>
+            <div class="mt-4 space-x-4">
+              <a href="https://www.doctora.live" target="_blank" class="text-blue-400 hover:underline">Live Demo</a>
+              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
+            </div>
+          </div>
+
+          <div class="bg-gray-700 p-6 rounded-xl">
+            <h3 class="text-xl font-bold">AcademyGo</h3>
+            <p class="mt-2">An e-learning backend API with features for batch, course, test, and trainee management. Built with .NET Core, SQL, and Azure DevOps.</p>
+            <div class="mt-4">
+              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
+            </div>
+          </div>
+
+          <div class="bg-gray-700 p-6 rounded-xl">
+            <h3 class="text-xl font-bold">Task Manager App</h3>
+            <p class="mt-2">A responsive web app to manage personal and team-based tasks with features like deadline reminders, status filters, and modal-based editing. Built with HTML, JavaScript, and Tailwind CSS.</p>
+            <div class="mt-4">
+              <a href="https://github.com/Varun-dev7/nexus-task-manager" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="bg-gray-700 p-6 rounded-lg">
-        <h3 class="text-xl font-bold">AcademyGo</h3>
-        <p class="mt-2">An e-learning backend API with features for batch, course, test, and trainee management. Built with .NET Core, SQL, and Azure DevOps.</p>
-        <div class="mt-4">
-          <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline">GitHub</a>
-        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-hidden py-12 px-6 md:px-20">
+      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+        <h2 class="text-3xl font-semibold mb-6">Skills</h2>
+        <ul class="grid grid-cols-2 md:grid-cols-3 gap-4 list-disc list-inside">
+          <li>React.js</li>
+          <li>.NET Core</li>
+          <li>SignalR</li>
+          <li>SQL / MySQL</li>
+          <li>REST APIs</li>
+          <li>Tailwind CSS</li>
+          <li>Git & GitHub</li>
+          <li>Azure DevOps</li>
+          <li>HTML5 / CSS / JavaScript</li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-12 px-4 md:px-20">
-    <h2 class="text-3xl font-semibold mb-6">Skills</h2>
-    <ul class="grid grid-cols-2 md:grid-cols-3 gap-4 list-disc list-inside">
-      <li>React.js</li>
-      <li>.NET Core</li>
-      <li>SignalR</li>
-      <li>SQL / MySQL</li>
-      <li>REST APIs</li>
-      <li>Tailwind CSS</li>
-      <li>Git & GitHub</li>
-      <li>Azure DevOps</li>
-      <li>HTML5 / CSS / JavaScript</li>
-    </ul>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-12 px-4 md:px-20 bg-gray-800">
-    <h2 class="text-3xl font-semibold mb-6">Contact</h2>
-    <p>Email: <a href="mailto:varungupta00v7@gmail.com" class="text-blue-400 hover:underline">varungupta00v7@gmail.com</a></p>
-    <p>Phone: <span class="text-white">+91-8303843172</span></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-blue-400 hover:underline">linkedin.com/in/varun-gupta-a272a8346</a></p>
-  </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section-hidden py-12 px-6 md:px-20">
+      <div class="bg-white/5 p-6 rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+        <h2 class="text-3xl font-semibold mb-6">Contact</h2>
+        <p>Email: <a href="mailto:varungupta00v7@gmail.com" class="text-blue-400 hover:underline">varungupta00v7@gmail.com</a></p>
+        <p>Phone: <span class="text-white">+91-8303843172</span></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-blue-400 hover:underline">linkedin.com/in/varun-gupta-a272a8346</a></p>
+      </div>
+    </section>
+  </main>
 
   <footer class="bg-gray-800 text-center text-sm py-4">
     &copy; 2024 Varun Gupta. All rights reserved.
   </footer>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(sec => {
+        sec.classList.add('section-hidden');
+        sec.classList.remove('section-visible');
+      });
+      const active = document.getElementById(sectionId);
+      active.classList.remove('section-hidden');
+      active.classList.add('section-visible', 'fade-enter');
+      setTimeout(() => {
+        active.classList.add('fade-enter-active');
+      }, 10);
+    }
+  </script>
 </body>
 </html>
