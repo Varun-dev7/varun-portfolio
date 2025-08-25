@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Varun Gupta - Full Stack Developer experienced in React.js, .NET Core, MySQL, and SignalR." />
+  <title>Varun Gupta | Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Varun Gupta - Full Stack Developer with expertise in React.js, .NET Core, MySQL, and SignalR.">
   <meta property="og:title" content="Varun Gupta | Full-Stack Developer" />
-  <meta property="og:description" content="Portfolio of Varun Gupta showcasing projects, skills, and experience in React.js, .NET Core, and full-stack development." />
+  <meta property="og:description" content="Showcasing projects, experience, and skills in full-stack development." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/profile.jpg" />
-  <title>Varun Gupta | Full-Stack Developer</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Skip link for accessibility -->
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- ===== HEADER / NAV ===== -->
+  <a href="#main" class="skip-link">Skip to content</a>
+  
   <header>
-    <nav class="navbar" aria-label="Main navigation">
+    <nav class="navbar" aria-label="Primary Navigation">
       <a href="#hero" class="logo">Varun Gupta</a>
-      <ul class="nav-links">
+      <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -30,40 +32,38 @@
       </ul>
     </nav>
   </header>
-
-  <main id="main">
-    <!-- ===== HERO ===== -->
+  
+  <main id="main" tabindex="-1">
+    <!-- Hero Section -->
     <section id="hero" class="hero" aria-label="Introduction">
       <div class="hero-content">
         <h1>Hi, I’m <span>Varun Gupta</span></h1>
-        <h2 class="typing">Full-Stack Developer</h2>
+        <h2 class="typing" aria-live="polite"></h2>
         <div class="hero-buttons">
           <a href="Varun_Gupta_Resume-1.pdf" class="btn" target="_blank" rel="noopener">View Resume</a>
           <a href="#contact" class="btn secondary">Contact Me</a>
         </div>
       </div>
     </section>
-
-    <!-- ===== ABOUT ===== -->
+    
+    <!-- About Section -->
     <section id="about" class="fade-in" aria-labelledby="about-title">
       <h2 id="about-title">About Me</h2>
-      <div class="about-container">
-        <img src="assets/profile.jpg" alt="Profile picture of Varun Gupta" />
+      <div class="about-content">
+        <img src="assets/profile.jpg" alt="Varun Gupta Profile Picture" />
         <p>
-          Full Stack Developer with 1 year of experience in React.js and .NET Core, proficient in
-          building Web APIs, SignalR, Tailwind CSS, and MySQL. Delivered projects like
-          <strong>Doctora App</strong> and <strong>AcademyGo</strong> in agile environments.
+          Full Stack Developer with 1 year of experience in React.js and .NET Core. Proficient in building Web APIs, real-time features (SignalR), and responsive UIs using Tailwind CSS and MySQL. Delivered projects like Doctora App and AcademyGo in agile environments.
         </p>
       </div>
     </section>
-
-    <!-- ===== SKILLS ===== -->
+    
+    <!-- Skills Section -->
     <section id="skills" class="fade-in" aria-labelledby="skills-title">
       <h2 id="skills-title">Skills</h2>
-      <ul class="skills-grid">
-        <li title="Experienced in semantic markup and responsive layouts">HTML5</li>
-        <li title="Modern CSS3 features and responsive design">CSS3</li>
-        <li title="Dynamic scripting and DOM manipulation">JavaScript</li>
+      <ul class="skills-grid" role="list">
+        <li title="Semantic markup and responsive layouts">HTML5</li>
+        <li title="Styling and animations">CSS3</li>
+        <li title="Dynamic scripting">JavaScript</li>
         <li>React.js</li>
         <li>.NET Core / C#</li>
         <li>SignalR</li>
@@ -77,65 +77,66 @@
         <li>NPM</li>
       </ul>
     </section>
-
-    <!-- ===== EXPERIENCE ===== -->
+    
+    <!-- Experience Section -->
     <section id="experience" class="fade-in" aria-labelledby="experience-title">
       <h2 id="experience-title">Experience</h2>
       <article class="card">
         <h3>Cubicle Eight <span>(July 2025 – Present)</span></h3>
         <ul>
           <li>Full-stack development with React.js, .NET Core (C#), MySQL, and SignalR.</li>
-          <li>Reduced manual workflows by ~30%, improved response times by ~40%.</li>
+          <li>Reduced manual workflows by 30%, improved response time by 40%.</li>
         </ul>
       </article>
     </section>
-
-    <!-- ===== PROJECTS ===== -->
+    
+    <!-- Projects Section -->
     <section id="projects" class="fade-in" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="front">
+      <div class="projects-grid">
+        <article class="project-card" tabindex="0" aria-label="Doctora App project details">
+          <div class="project-front">
             <h3>Doctora App</h3>
-            <p>OPD management platform</p>
+            <p>Full-stack OPD platform</p>
           </div>
-          <div class="back">
+          <div class="project-back" aria-hidden="true">
             <p>React.js, .NET Core, SignalR, Tailwind CSS</p>
+            <p>Real-time doctor-patient queues, mobile-responsive UI.</p>
             <a href="https://doctora.live/" target="_blank" rel="noopener" class="btn">Live Demo</a>
           </div>
         </article>
-        <article class="project-card">
-          <div class="front">
+        <article class="project-card" tabindex="0" aria-label="AcademyGo project details">
+          <div class="project-front">
             <h3>AcademyGo</h3>
             <p>E-learning platform</p>
           </div>
-          <div class="back">
-            <p>.NET Core APIs, role-based access, Azure DevOps CI/CD</p>
+          <div class="project-back" aria-hidden="true">
+            <p>.NET Core APIs, role-based access, Azure DevOps CI/CD.</p>
           </div>
         </article>
       </div>
     </section>
-
-    <!-- ===== EDUCATION ===== -->
+    
+    <!-- Education Section -->
     <section id="education" class="fade-in" aria-labelledby="education-title">
       <h2 id="education-title">Education</h2>
       <ul>
-        <li><strong>BA</strong> — Maharaja Suhel Dev State University (2022–2025)</li>
-        <li><strong>Full-Stack Developer Training</strong> — Coders Academy (July 2024 – July 2025)</li>
+        <li><strong>BA</strong> – Maharaja Suhel Dev State University (2022–2025)</li>
+        <li><strong>Full-Stack Developer Training</strong> – Coders Academy (July 2024 – July 2025)</li>
       </ul>
     </section>
-
-    <!-- ===== CERTIFICATES ===== -->
+    
+    <!-- Certificates Section -->
     <section id="certificates" class="fade-in" aria-labelledby="certificates-title">
       <h2 id="certificates-title">Certificates</h2>
       <ul>
         <li>Frontend — Coders Academy</li>
         <li>Backend — Coders Academy</li>
-        <li>O-Level — NIELIT</li>
+        <li>O-Level Computer Course — NIELIT</li>
       </ul>
     </section>
-
-    <!-- ===== CONTACT ===== -->
+    
+    <!-- Contact Section -->
     <section id="contact" class="fade-in" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact Me</h2>
       <p>Email: <a href="mailto:varungupta00v7@gmail.com">varungupta00v7@gmail.com</a></p>
@@ -144,30 +145,26 @@
         <a href="http://linkedin.com/in/varun-gupta-a272a8346" target="_blank" rel="noopener">LinkedIn</a> | 
         <a href="https://github.com/Varun-dev7" target="_blank" rel="noopener">GitHub</a>
       </p>
-      <form class="contact-form" action="mailto:varungupta00v7@gmail.com" method="post" enctype="text/plain">
-        <label>
-          <span class="visually-hidden">Your Name</span>
-          <input type="text" name="name" placeholder="Your Name" required />
-        </label>
-        <label>
-          <span class="visually-hidden">Your Email</span>
-          <input type="email" name="email" placeholder="Your Email" required />
-        </label>
-        <label>
-          <span class="visually-hidden">Your Message</span>
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        </label>
+      <form action="mailto:varungupta00v7@gmail.com" method="post" enctype="text/plain" class="contact-form" aria-label="Contact form">
+        <label for="name" class="visually-hidden">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        
+        <label for="email" class="visually-hidden">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        
+        <label for="message" class="visually-hidden">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+        
         <button type="submit" class="btn">Send</button>
       </form>
     </section>
   </main>
-
-  <!-- ===== FOOTER ===== -->
+  
   <footer>
     <p>© 2025 Varun Gupta</p>
-    <a href="#hero" class="back-to-top">Back to top ↑</a>
+    <button class="back-to-top" aria-label="Back to top">↑ Back to top</button>
   </footer>
-
+  
   <script src="script.js"></script>
 </body>
 </html>
