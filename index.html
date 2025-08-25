@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Varun Gupta - Full Stack Developer specializing in React.js, .NET Core, and MySQL.">
-  <meta property="og:title" content="Varun Gupta | Full Stack Developer">
-  <meta property="og:description" content="Portfolio of Varun Gupta — showcasing projects, experience, and skills in React.js, .NET Core, MySQL, and full-stack development.">
-  <meta property="og:image" content="assets/profile.jpg">
-  <meta property="og:type" content="website">
-  <title>Varun Gupta | Full Stack Developer</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Varun Gupta - Full Stack Developer experienced in React.js, .NET Core, MySQL, and SignalR." />
+  <meta property="og:title" content="Varun Gupta | Full-Stack Developer" />
+  <meta property="og:description" content="Portfolio of Varun Gupta showcasing projects, skills, and experience in React.js, .NET Core, and full-stack development." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/profile.jpg" />
+  <title>Varun Gupta | Full-Stack Developer</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  
-  <!-- ===== NAVBAR ===== -->
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== HEADER / NAV ===== -->
   <header>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
       <a href="#hero" class="logo">Varun Gupta</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -29,131 +31,141 @@
     </nav>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section id="hero">
-    <div class="hero-content">
-      <h1>Hi, I'm <span>Varun Gupta</span></h1>
-      <h2 class="typing">Full Stack Developer</h2>
-      <div class="hero-buttons">
-        <a href="assets/Varun_Gupta_Resume.pdf" class="btn" target="_blank">View Resume</a>
-        <a href="#contact" class="btn secondary">Contact Me</a>
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="hero" aria-label="Introduction">
+      <div class="hero-content">
+        <h1>Hi, I’m <span>Varun Gupta</span></h1>
+        <h2 class="typing">Full-Stack Developer</h2>
+        <div class="hero-buttons">
+          <a href="Varun_Gupta_Resume-1.pdf" class="btn" target="_blank" rel="noopener">View Resume</a>
+          <a href="#contact" class="btn secondary">Contact Me</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="fade-in">
-    <h2>About Me</h2>
-    <div class="about-container">
-      <img src="assets/profile.jpg" alt="Varun Gupta profile picture">
-      <p>
-        Full Stack Developer with 1 year of experience in React.js and .NET Core, proficient in building Web APIs, SignalR, Tailwind CSS, and MySQL. 
-        Successfully delivered projects like <strong>Doctora App</strong> and <strong>AcademyGo</strong> in agile environments.
-      </p>
-    </div>
-  </section>
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="fade-in" aria-labelledby="about-title">
+      <h2 id="about-title">About Me</h2>
+      <div class="about-container">
+        <img src="assets/profile.jpg" alt="Profile picture of Varun Gupta" />
+        <p>
+          Full Stack Developer with 1 year of experience in React.js and .NET Core, proficient in
+          building Web APIs, SignalR, Tailwind CSS, and MySQL. Delivered projects like
+          <strong>Doctora App</strong> and <strong>AcademyGo</strong> in agile environments.
+        </p>
+      </div>
+    </section>
 
-  <!-- ===== SKILLS ===== -->
-  <section id="skills" class="fade-in">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <div class="skill" title="Experienced in semantic markup and responsive layouts">HTML5</div>
-      <div class="skill" title="Styling with CSS3, animations, and responsive design">CSS3</div>
-      <div class="skill" title="Dynamic scripting and DOM manipulation">JavaScript</div>
-      <div class="skill" title="Frontend framework expertise">React.js</div>
-      <div class="skill" title=".NET Core APIs and backend development">.NET Core / C#</div>
-      <div class="skill" title="Real-time communication tech">SignalR</div>
-      <div class="skill" title="Database design and optimization">MySQL</div>
-      <div class="skill" title="Modern utility-first CSS">Tailwind CSS</div>
-      <div class="skill" title="Version control & pipelines">Azure DevOps</div>
-      <div class="skill" title="Git-based version control">Git</div>
-      <div class="skill" title="API testing">Postman</div>
-    </div>
-  </section>
-
-  <!-- ===== EXPERIENCE ===== -->
-  <section id="experience" class="fade-in">
-    <h2>Experience</h2>
-    <div class="experience-card">
-      <h3>Cubicle Eight <span>(July 2025 – Present)</span></h3>
-      <ul>
-        <li>Developed web apps with React.js, .NET Core, and MySQL.</li>
-        <li>Built real-time doctor-patient queues with SignalR (40% faster response).</li>
-        <li>Optimized workflows by 30% and improved API performance.</li>
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="fade-in" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <ul class="skills-grid">
+        <li title="Experienced in semantic markup and responsive layouts">HTML5</li>
+        <li title="Modern CSS3 features and responsive design">CSS3</li>
+        <li title="Dynamic scripting and DOM manipulation">JavaScript</li>
+        <li>React.js</li>
+        <li>.NET Core / C#</li>
+        <li>SignalR</li>
+        <li>MySQL</li>
+        <li>Tailwind CSS</li>
+        <li>Azure DevOps</li>
+        <li>Git</li>
+        <li>Postman</li>
+        <li>Ionic</li>
+        <li>VS Code / Visual Studio</li>
+        <li>NPM</li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== PROJECTS ===== -->
-  <section id="projects" class="fade-in">
-    <h2>Projects</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <div class="project-front">
-          <h3>Doctora App</h3>
-          <p>Full-stack OPD platform</p>
-        </div>
-        <div class="project-back">
-          <p>React.js, .NET Core, SignalR, Tailwind CSS</p>
-          <p>Real-time doctor-patient queues, mobile-friendly UI.</p>
-          <a href="#" class="btn" target="_blank">Live Demo</a>
-        </div>
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" class="fade-in" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <article class="card">
+        <h3>Cubicle Eight <span>(July 2025 – Present)</span></h3>
+        <ul>
+          <li>Full-stack development with React.js, .NET Core (C#), MySQL, and SignalR.</li>
+          <li>Reduced manual workflows by ~30%, improved response times by ~40%.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="fade-in" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="front">
+            <h3>Doctora App</h3>
+            <p>OPD management platform</p>
+          </div>
+          <div class="back">
+            <p>React.js, .NET Core, SignalR, Tailwind CSS</p>
+            <a href="https://doctora.live/" target="_blank" rel="noopener" class="btn">Live Demo</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="front">
+            <h3>AcademyGo</h3>
+            <p>E-learning platform</p>
+          </div>
+          <div class="back">
+            <p>.NET Core APIs, role-based access, Azure DevOps CI/CD</p>
+          </div>
+        </article>
       </div>
-      <div class="project-card">
-        <div class="project-front">
-          <h3>AcademyGo</h3>
-          <p>E-learning platform</p>
-        </div>
-        <div class="project-back">
-          <p>.NET Core APIs, CI/CD, role-based access.</p>
-          <p>Scalable architecture for online education.</p>
-          <a href="#" class="btn" target="_blank">Live Demo</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== EDUCATION ===== -->
-  <section id="education" class="fade-in">
-    <h2>Education</h2>
-    <ul>
-      <li><strong>Bachelor of Arts</strong> — Maharaja Suhel Dev State University (2022–2025)</li>
-      <li><strong>Full-Stack Developer Training</strong> — Coders Academy (2024–2025)</li>
-    </ul>
-  </section>
+    <!-- ===== EDUCATION ===== -->
+    <section id="education" class="fade-in" aria-labelledby="education-title">
+      <h2 id="education-title">Education</h2>
+      <ul>
+        <li><strong>BA</strong> — Maharaja Suhel Dev State University (2022–2025)</li>
+        <li><strong>Full-Stack Developer Training</strong> — Coders Academy (July 2024 – July 2025)</li>
+      </ul>
+    </section>
 
-  <!-- ===== CERTIFICATES ===== -->
-  <section id="certificates" class="fade-in">
-    <h2>Certificates</h2>
-    <ul>
-      <li>Frontend — Coders Academy</li>
-      <li>Backend — Coders Academy</li>
-      <li>O-Level Computer Course — NIELIT</li>
-    </ul>
-  </section>
+    <!-- ===== CERTIFICATES ===== -->
+    <section id="certificates" class="fade-in" aria-labelledby="certificates-title">
+      <h2 id="certificates-title">Certificates</h2>
+      <ul>
+        <li>Frontend — Coders Academy</li>
+        <li>Backend — Coders Academy</li>
+        <li>O-Level — NIELIT</li>
+      </ul>
+    </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="fade-in">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:varungupta00v7@gmail.com">varungupta00v7@gmail.com</a></p>
-    <p>Phone: <a href="tel:+918303843172">+91 8303843172</a></p>
-    <p>
-      <a href="http://linkedin.com/in/varun-gupta-a272a8346" target="_blank">LinkedIn</a> | 
-      <a href="https://github.com/Varun-dev7" target="_blank">GitHub</a>
-    </p>
-    <form action="mailto:varungupta00v7@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn">Send</button>
-    </form>
-  </section>
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="fade-in" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact Me</h2>
+      <p>Email: <a href="mailto:varungupta00v7@gmail.com">varungupta00v7@gmail.com</a></p>
+      <p>Phone: <a href="tel:+918303843172">+91 8303843172</a></p>
+      <p>
+        <a href="http://linkedin.com/in/varun-gupta-a272a8346" target="_blank" rel="noopener">LinkedIn</a> | 
+        <a href="https://github.com/Varun-dev7" target="_blank" rel="noopener">GitHub</a>
+      </p>
+      <form class="contact-form" action="mailto:varungupta00v7@gmail.com" method="post" enctype="text/plain">
+        <label>
+          <span class="visually-hidden">Your Name</span>
+          <input type="text" name="name" placeholder="Your Name" required />
+        </label>
+        <label>
+          <span class="visually-hidden">Your Email</span>
+          <input type="email" name="email" placeholder="Your Email" required />
+        </label>
+        <label>
+          <span class="visually-hidden">Your Message</span>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        </label>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </section>
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>© 2025 Varun Gupta | 
-      <a href="#hero" class="back-to-top">Back to top ↑</a>
-    </p>
+    <p>© 2025 Varun Gupta</p>
+    <a href="#hero" class="back-to-top">Back to top ↑</a>
   </footer>
 
   <script src="script.js"></script>
