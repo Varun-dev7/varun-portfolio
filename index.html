@@ -1,231 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Varun Gupta - Full Stack Developer specializing in React.js, .NET Core, and MySQL.">
+  <meta property="og:title" content="Varun Gupta | Full Stack Developer">
+  <meta property="og:description" content="Portfolio of Varun Gupta — showcasing projects, experience, and skills in React.js, .NET Core, MySQL, and full-stack development.">
+  <meta property="og:image" content="assets/profile.jpg">
+  <meta property="og:type" content="website">
   <title>Varun Gupta | Full Stack Developer</title>
-  <style>
-    /* Reset and base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      background: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a {
-      color: #0af;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #08f;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-    }
-    header {
-      text-align: center;
-      padding-bottom: 2rem;
-      animation: fadeInDown 1s ease forwards;
-    }
-    header h1 {
-      font-size: 3rem;
-      color: #0af;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-      font-weight: 300;
-    }
-
-    /* Section styles */
-    section {
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #333;
-      animation: fadeIn 1.5s ease forwards;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #0af;
-      position: relative;
-      padding-bottom: 0.3rem;
-    }
-    section h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: #0af;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
-
-    /* About & Summary */
-    #summary {
-      font-size: 1.1rem;
-      color: #bbb;
-    }
-
-    /* Skills List */
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      list-style: none;
-    }
-    .skill-item {
-      background: #222;
-      padding: 0.7rem 1rem;
-      border-radius: 20px;
-      box-shadow: 0 0 8px #0af88c44;
-      font-weight: 600;
-      transition: transform 0.3s ease;
-    }
-    .skill-item:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 14px #0af88caa;
-    }
-
-    /* Projects */
-    .project-card {
-      background: #1c1c1c;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 170, 255, 0.2);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 25px rgba(0, 170, 255, 0.5);
-    }
-    .project-card h3 {
-      color: #08f;
-      margin-bottom: 0.5rem;
-    }
-    .project-card p {
-      color: #bbb;
-      font-size: 0.95rem;
-    }
-
-    /* Contact */
-    .contact-links {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .contact-links a {
-      font-size: 1.5rem;
-      color: #0af;
-      padding: 0.5rem 1rem;
-      border: 1px solid #0af;
-      border-radius: 30px;
-      transition: background-color 0.3s ease;
-    }
-    .contact-links a:hover {
-      background-color: #0af;
-      color: #121212;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.4rem;
-      }
-      .skills-list {
-        justify-content: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
+  
+  <!-- ===== NAVBAR ===== -->
   <header>
-    <h1>Varun Gupta</h1>
-    <p>Full Stack Developer | React.js & .NET Core Expert</p>
+    <nav class="navbar">
+      <a href="#hero" class="logo">Varun Gupta</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section id="summary">
-    <h2>Summary</h2>
-    <p>Full Stack Developer with 1 year of professional experience specializing in building Web APIs, real-time features with SignalR, and responsive UIs using React.js, .NET Core, Tailwind CSS, and MySQL. Proven track record delivering projects like Doctora App and AcademyGo in agile environments.</p>
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Varun Gupta</span></h1>
+      <h2 class="typing">Full Stack Developer</h2>
+      <div class="hero-buttons">
+        <a href="assets/Varun_Gupta_Resume.pdf" class="btn" target="_blank">View Resume</a>
+        <a href="#contact" class="btn secondary">Contact Me</a>
+      </div>
+    </div>
   </section>
 
-  <section id="skills">
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+    <div class="about-container">
+      <img src="assets/profile.jpg" alt="Varun Gupta profile picture">
+      <p>
+        Full Stack Developer with 1 year of experience in React.js and .NET Core, proficient in building Web APIs, SignalR, Tailwind CSS, and MySQL. 
+        Successfully delivered projects like <strong>Doctora App</strong> and <strong>AcademyGo</strong> in agile environments.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="fade-in">
     <h2>Skills</h2>
-    <ul class="skills-list">
-      <li class="skill-item">React.js</li>
-      <li class="skill-item">.NET Core (C#)</li>
-      <li class="skill-item">SignalR</li>
-      <li class="skill-item">Tailwind CSS</li>
-      <li class="skill-item">MySQL</li>
-      <li class="skill-item">RESTful APIs</li>
-      <li class="skill-item">Azure DevOps</li>
-      <li class="skill-item">JavaScript</li>
-      <li class="skill-item">Bootstrap</li>
-      <li class="skill-item">Git & GitHub</li>
+    <div class="skills-grid">
+      <div class="skill" title="Experienced in semantic markup and responsive layouts">HTML5</div>
+      <div class="skill" title="Styling with CSS3, animations, and responsive design">CSS3</div>
+      <div class="skill" title="Dynamic scripting and DOM manipulation">JavaScript</div>
+      <div class="skill" title="Frontend framework expertise">React.js</div>
+      <div class="skill" title=".NET Core APIs and backend development">.NET Core / C#</div>
+      <div class="skill" title="Real-time communication tech">SignalR</div>
+      <div class="skill" title="Database design and optimization">MySQL</div>
+      <div class="skill" title="Modern utility-first CSS">Tailwind CSS</div>
+      <div class="skill" title="Version control & pipelines">Azure DevOps</div>
+      <div class="skill" title="Git-based version control">Git</div>
+      <div class="skill" title="API testing">Postman</div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="fade-in">
+    <h2>Experience</h2>
+    <div class="experience-card">
+      <h3>Cubicle Eight <span>(July 2025 – Present)</span></h3>
+      <ul>
+        <li>Developed web apps with React.js, .NET Core, and MySQL.</li>
+        <li>Built real-time doctor-patient queues with SignalR (40% faster response).</li>
+        <li>Optimized workflows by 30% and improved API performance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="fade-in">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-front">
+          <h3>Doctora App</h3>
+          <p>Full-stack OPD platform</p>
+        </div>
+        <div class="project-back">
+          <p>React.js, .NET Core, SignalR, Tailwind CSS</p>
+          <p>Real-time doctor-patient queues, mobile-friendly UI.</p>
+          <a href="#" class="btn" target="_blank">Live Demo</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-front">
+          <h3>AcademyGo</h3>
+          <p>E-learning platform</p>
+        </div>
+        <div class="project-back">
+          <p>.NET Core APIs, CI/CD, role-based access.</p>
+          <p>Scalable architecture for online education.</p>
+          <a href="#" class="btn" target="_blank">Live Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education" class="fade-in">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>Bachelor of Arts</strong> — Maharaja Suhel Dev State University (2022–2025)</li>
+      <li><strong>Full-Stack Developer Training</strong> — Coders Academy (2024–2025)</li>
     </ul>
   </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-
-    <div class="project-card">
-      <h3>Doctora App</h3>
-      <p>Full-stack OPD platform using React.js and .NET Core reducing manual workflows by 30%. Implemented real-time doctor-patient queues using SignalR, improving response time by 40%.</p>
-    </div>
-
-    <div class="project-card">
-      <h3>AcademyGo - E-Learning Platform</h3>
-      <p>Developed scalable RESTful APIs with modular backend for courses, tests, MCQs, and role-based access. Integrated Azure DevOps for version control and automated CI/CD pipelines.</p>
-    </div>
+  <!-- ===== CERTIFICATES ===== -->
+  <section id="certificates" class="fade-in">
+    <h2>Certificates</h2>
+    <ul>
+      <li>Frontend — Coders Academy</li>
+      <li>Backend — Coders Academy</li>
+      <li>O-Level Computer Course — NIELIT</li>
+    </ul>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="fade-in">
+    <h2>Contact Me</h2>
     <p>Email: <a href="mailto:varungupta00v7@gmail.com">varungupta00v7@gmail.com</a></p>
-    <p>Phone: +91 8303843172</p>
-    <div class="contact-links">
-      <a href="https://github.com/varungupta00v7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
-      <a href="https://linkedin.com/in/varungupta00v7" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-    </div>
+    <p>Phone: <a href="tel:+918303843172">+91 8303843172</a></p>
+    <p>
+      <a href="http://linkedin.com/in/varun-gupta-a272a8346" target="_blank">LinkedIn</a> | 
+      <a href="https://github.com/Varun-dev7" target="_blank">GitHub</a>
+    </p>
+    <form action="mailto:varungupta00v7@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send</button>
+    </form>
   </section>
-</div>
 
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Varun Gupta | 
+      <a href="#hero" class="back-to-top">Back to top ↑</a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
