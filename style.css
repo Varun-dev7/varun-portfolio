@@ -1,13 +1,13 @@
-/* Theme Colors */
+
+/* Theme colors and fonts */
 :root {
   --primary: #0a192f;
   --secondary: #112240;
   --accent: #64ffda;
   --text-light: #e6f1ff;
-  --gray-light: #d9e2ec;
-  --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --gray: #d9e2ec;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans
 }
-
 /* Basic Reset */
 * {
   margin: 0;
