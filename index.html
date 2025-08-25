@@ -2,386 +2,230 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Varun Gupta | Full Stack Developer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .fade-in {
-      animation: fadeIn 0.5s ease-in;
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      color: #0af;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #08f;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      padding-bottom: 2rem;
+      animation: fadeInDown 1s ease forwards;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #0af;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+      font-weight: 300;
+    }
+
+    /* Section styles */
+    section {
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #333;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #0af;
+      position: relative;
+      padding-bottom: 0.3rem;
+    }
+    section h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #0af;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* About & Summary */
+    #summary {
+      font-size: 1.1rem;
+      color: #bbb;
+    }
+
+    /* Skills List */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+    }
+    .skill-item {
+      background: #222;
+      padding: 0.7rem 1rem;
+      border-radius: 20px;
+      box-shadow: 0 0 8px #0af88c44;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+    .skill-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 14px #0af88caa;
+    }
+
+    /* Projects */
+    .project-card {
+      background: #1c1c1c;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 170, 255, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0, 170, 255, 0.5);
+    }
+    .project-card h3 {
+      color: #08f;
+      margin-bottom: 0.5rem;
+    }
+    .project-card p {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    /* Contact */
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .contact-links a {
+      font-size: 1.5rem;
+      color: #0af;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0af;
+      border-radius: 30px;
+      transition: background-color 0.3s ease;
+    }
+    .contact-links a:hover {
+      background-color: #0af;
+      color: #121212;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-    .active-nav {
-      color: #3b82f6;
-      border-bottom: 2px solid #3b82f6;
-    }
-    .section-active {
-      display: block;
-    }
-    .section-hidden {
-      display: none;
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.4rem;
+      }
+      .skills-list {
+        justify-content: center;
+      }
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
-  <!-- Header -->
-  <header class="bg-gray-800 py-4 sticky top-0 z-50">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-          <span class="font-bold">VG</span>
-        </div>
-        <h1 class="text-xl font-bold">Varun Gupta</h1>
-      </div>
-      <nav class="hidden md:flex space-x-6">
-        <button onclick="showSection('hero')" class="nav-btn active-nav py-1">Home</button>
-        <button onclick="showSection('skills')" class="nav-btn py-1">Skills</button>
-        <button onclick="showSection('projects')" class="nav-btn py-1">Projects</button>
-        <button onclick="showSection('contact')" class="bg-blue-600 px-4 py-1 rounded hover:bg-blue-700 transition">Contact</button>
-      </nav>
-      <button class="md:hidden text-xl" onclick="toggleMobileMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-gray-800 py-2 px-4">
-      <button onclick="showSection('hero')" class="block w-full text-left py-2">Home</button>
-      <button onclick="showSection('skills')" class="block w-full text-left py-2">Skills</button>
-      <button onclick="showSection('projects')" class="block w-full text-left py-2">Projects</button>
-      <button onclick="showSection('contact')" class="block w-full text-left py-2">Contact</button>
-    </div>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Varun Gupta</h1>
+    <p>Full Stack Developer | React.js & .NET Core Expert</p>
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow">
-    <!-- Hero Section -->
-    <section id="hero" class="section-active py-12 px-4 md:px-8 fade-in">
-      <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Varun Gupta</h2>
-          <h3 class="text-2xl md:text-3xl text-blue-400 mb-6">Full Stack Developer</h3>
-          <p class="text-lg mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
-            I build efficient, scalable web applications with 1 year of professional experience using modern technologies like React, .NET Core, and cloud services.
-          </p>
-          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
-            <a href="#contact" onclick="showSection('contact')" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition text-center">Hire Me</a>
-            <a href="./resume.pdf" class="border border-white hover:bg-white hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition text-center">Download CV</a>
-          </div>
-        </div>
-        <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
-          <img src="https://via.placeholder.com/400" alt="Varun Gupta" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-blue-600">
-        </div>
-      </div>
-    </section>
+  <section id="summary">
+    <h2>Summary</h2>
+    <p>Full Stack Developer with 1 year of professional experience specializing in building Web APIs, real-time features with SignalR, and responsive UIs using React.js, .NET Core, Tailwind CSS, and MySQL. Proven track record delivering projects like Doctora App and AcademyGo in agile environments.</p>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section-hidden py-12 px-4 md:px-8">
-      <div class="container mx-auto max-w-6xl">
-        <h2 class="text-3xl font-bold mb-12 text-center">My Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-react"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">React.js</h3>
-            <p class="text-gray-300 text-sm">Building interactive UIs with reusable components</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-server"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">.NET Core</h3>
-            <p class="text-gray-300 text-sm">Robust backend services and APIs</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">SQL</h3>
-            <p class="text-gray-300 text-sm">Database design and optimization</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-bolt"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">SignalR</h3>
-            <p class="text-gray-300 text-sm">Real-time communication features</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-css3-alt"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Tailwind CSS</h3>
-            <p class="text-gray-300 text-sm">Modern, responsive styling</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-git-alt"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Git</h3>
-            <p class="text-gray-300 text-sm">Version control and collaboration</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-aws"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Azure DevOps</h3>
-            <p class="text-gray-300 text-sm">CI/CD pipelines and deployment</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-project-diagram"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">REST APIs</h3>
-            <p class="text-gray-300 text-sm">Designing efficient endpoints</p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li class="skill-item">React.js</li>
+      <li class="skill-item">.NET Core (C#)</li>
+      <li class="skill-item">SignalR</li>
+      <li class="skill-item">Tailwind CSS</li>
+      <li class="skill-item">MySQL</li>
+      <li class="skill-item">RESTful APIs</li>
+      <li class="skill-item">Azure DevOps</li>
+      <li class="skill-item">JavaScript</li>
+      <li class="skill-item">Bootstrap</li>
+      <li class="skill-item">Git & GitHub</li>
+    </ul>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section-hidden py-12 px-4 md:px-8">
-      <div class="container mx-auto max-w-6xl">
-        <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Project 1 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-blue-600 flex items-center justify-center">
-              <i class="fas fa-user-md text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Doctora App</h3>
-              <p class="text-gray-300 mb-4">Healthcare OPD management system with real-time patient-doctor interaction</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">React.js</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">.NET Core</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SignalR</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
-                <a href="https://www.doctora.live" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                  <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                </a>
-                <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                  <i class="fab fa-github mr-2"></i> Code
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Project 2 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-purple-600 flex items-center justify-center">
-              <i class="fas fa-graduation-cap text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">AcademyGo</h3>
-              <p class="text-gray-300 mb-4">E-learning backend API with batch, course, test, and trainee management</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">.NET Core</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Azure DevOps</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">REST API</span>
-              </div>
-              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                <i class="fab fa-github mr-2"></i> Code
-              </a>
-            </div>
-          </div>
-          
-          <!-- Project 3 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-green-600 flex items-center justify-center">
-              <i class="fas fa-tasks text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Task Manager App</h3>
-              <p class="text-gray-300 mb-4">Responsive web app for personal and team-based task management</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">HTML5</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">CSS3</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
-              </div>
-              <a href="https://github.com/Varun-dev7/nexus-task-manager" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                <i class="fab fa-github mr-2"></i> Code
-              </a>
-            </div>
-          </div>
-          
-          <!-- Project 4 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-yellow-600 flex items-center justify-center">
-              <i class="fas fa-code text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">More Projects</h3>
-              <p class="text-gray-300 mb-4">Check out my GitHub for additional projects and contributions</p>
-              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                <i class="fab fa-github mr-2"></i> GitHub Profile
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section id="projects">
+    <h2>Projects</h2>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section-hidden py-12 px-4 md:px-8">
-      <div class="container mx-auto max-w-4xl">
-        <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
-        <div class="bg-gray-800 rounded-xl p-6 md:p-8">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-              <div class="space-y-4">
-                <div class="flex items-center">
-                  <div class="bg-blue-600 p-3 rounded-full mr-4">
-                    <i class="fas fa-envelope"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-400">Email</p>
-                    <a href="mailto:varungupta00v7@gmail.com" class="hover:text-blue-400 break-all">varungupta00v7@gmail.com</a>
-                  </div>
-                </div>
-                
-                <div class="flex items-center">
-                  <div class="bg-blue-600 p-3 rounded-full mr-4">
-                    <i class="fas fa-phone"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-400">Phone</p>
-                    <p>+91-8303843172</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-center">
-                  <div class="bg-blue-600 p-3 rounded-full mr-4">
-                    <i class="fab fa-linkedin-in"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-400">LinkedIn</p>
-                    <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="hover:text-blue-400 break-all">linkedin.com/in/varun-gupta</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="text-xl font-semibold mb-4">Send Me a Message</h3>
-              <form class="space-y-4">
-                <div>
-                  <label for="name" class="block mb-1">Name</label>
-                  <input type="text" id="name" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
-                
-                <div>
-                  <label for="email" class="block mb-1">Email</label>
-                  <input type="email" id="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
-                
-                <div>
-                  <label for="message" class="block mb-1">Message</label>
-                  <textarea id="message" rows="4" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
-                
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition w-full">Send Message</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 py-6">
-    <div class="container mx-auto px-4 text-center">
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://github.com/Varun-dev7" target="_blank" class="text-gray-400 hover:text-white text-xl">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-gray-400 hover:text-white text-xl">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:varungupta00v7@gmail.com" class="text-gray-400 hover:text-white text-xl">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-      <p>&copy; 2024 Varun Gupta. All rights reserved.</p>
+    <div class="project-card">
+      <h3>Doctora App</h3>
+      <p>Full-stack OPD platform using React.js and .NET Core reducing manual workflows by 30%. Implemented real-time doctor-patient queues using SignalR, improving response time by 40%.</p>
     </div>
-  </footer>
 
-  <script>
-    // Navigation functionality
-    function showSection(sectionId) {
-      // Hide all sections
-      document.querySelectorAll('main section').forEach(section => {
-        section.classList.remove('section-active', 'fade-in');
-        section.classList.add('section-hidden');
-      });
-      
-      // Show selected section
-      const section = document.getElementById(sectionId);
-      section.classList.remove('section-hidden');
-      section.classList.add('section-active');
-      
-      // Trigger fade-in animation
-      setTimeout(() => {
-        section.classList.add('fade-in');
-      }, 10);
-      
-      // Update active nav button
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active-nav');
-      });
-      
-      if (sectionId !== 'contact') {
-        const activeBtn = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
-        if (activeBtn) activeBtn.classList.add('active-nav');
-      }
-      
-      // Close mobile menu if open
-      document.getElementById('mobileMenu').classList.add('hidden');
-      
-      // Scroll to top of section
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    }
-    
-    // Set hero as default section
-    document.addEventListener('DOMContentLoaded', () => {
-      showSection('hero');
-    });
-  </script>
+    <div class="project-card">
+      <h3>AcademyGo - E-Learning Platform</h3>
+      <p>Developed scalable RESTful APIs with modular backend for courses, tests, MCQs, and role-based access. Integrated Azure DevOps for version control and automated CI/CD pipelines.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:varungupta00v7@gmail.com">varungupta00v7@gmail.com</a></p>
+    <p>Phone: +91 8303843172</p>
+    <div class="contact-links">
+      <a href="https://github.com/varungupta00v7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+      <a href="https://linkedin.com/in/varungupta00v7" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+  </section>
+</div>
+
 </body>
 </html>
