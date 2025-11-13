@@ -1,388 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Varun Gupta | Full Stack Developer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Varun Gupta — Impressive Portfolio</title>
+  <meta name="description" content="Varun Gupta — Full Stack Developer. Animated, modern portfolio with interactive navbar and smooth reveal effects." />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .fade-in {
-      animation: fadeIn 0.5s ease-in;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-    .active-nav {
-      color: #3b82f6;
-      border-bottom: 2px solid #3b82f6;
-    }
-    .section-active {
-      display: block;
-    }
-    .section-hidden {
-      display: none;
-    }
+    /* Page theme & gradient background */
+    :root{--accent:#3b82f6;--glass:rgba(255,255,255,0.06);} 
+    html,body{height:100%;}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:linear-gradient(120deg,#0f172a 0%, #0b1220 45%, #031224 100%); color: #e6eef8;}
+
+    /* Animated header (shrinks on scroll + glass effect) */
+    header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(1.1) blur(6px);transition: all .28s cubic-bezier(.2,.9,.2,1);}
+    header.scrolled{padding-top:.25rem;padding-bottom:.25rem;box-shadow:0 6px 30px rgba(2,6,23,.6);background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));}
+
+    /* Brand */
+    .brand-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;background:linear-gradient(135deg,var(--accent),#7c3aed);box-shadow:0 6px 20px rgba(59,130,246,.12);}
+
+    /* Animated nav underline */
+    .nav-link{position:relative;padding:6px 8px;color:rgba(230,238,248,.8);transition:color .18s}
+    .nav-link::after{content:'';position:absolute;left:50%;transform:translateX(-50%) scaleX(0);bottom:-6px;height:3px;width:46%;background:var(--accent);border-radius:999px;transition:transform .25s cubic-bezier(.2,.9,.2,1),opacity .2s;opacity:0}
+    .nav-link:hover{color:white}
+    .nav-link:hover::after,.nav-link.active::after{transform:translateX(-50%) scaleX(1);opacity:1}
+
+    /* Mobile menu */
+    .mobile-panel{transition:transform .32s cubic-bezier(.2,.9,.2,1),opacity .22s;transform-origin:top right}
+
+    /* Hero animations */
+    .typewriter{display:inline-block;white-space:nowrap;overflow:hidden;border-right:2px solid rgba(255,255,255,.12);animation:typing 3s steps(30,end) infinite;color:var(--accent)}
+    @keyframes typing{0%{width:0}40%{width:12ch}60%{width:12ch}100%{width:0}}
+
+    /* Reveal effect */
+    .reveal{opacity:0;transform:translateY(16px) scale(.99);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Cards */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(6px);}
+
+    /* Floating accent shapes */
+    .float-blob{position:absolute;border-radius:999px;filter:blur(44px);opacity:.22;mix-blend-mode:screen;}
+
+    /* small responsive tweaks */
+    @media (max-width:768px){ .nav-desktop{display:none} .nav-mobile-btn{display:block} }
+    @media (min-width:769px){ .nav-mobile-btn{display:none} }
+
+    /* Button micro animation */
+    .btn-ghost{border:1px solid rgba(255,255,255,0.06);background:transparent}
+    .btn-ghost:hover{transform:translateY(-3px) scale(1.01)}
   </style>
 </head>
-<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col">
   <!-- Header -->
-  <header class="bg-gray-800 py-4 sticky top-0 z-50">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-          <span class="font-bold">VG</span>
+  <header id="siteHeader" class="py-4">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="brand-badge text-white">VG</div>
+        <div class="hidden sm:block">
+          <div class="text-xl font-semibold tracking-tight">Varun Gupta</div>
+          <div class="text-xs text-gray-300 -mt-1">Full Stack Developer</div>
         </div>
-        <h1 class="text-xl font-bold">Varun Gupta</h1>
       </div>
-      <nav class="hidden md:flex space-x-6">
-        <button onclick="showSection('hero')" class="nav-btn active-nav py-1">Home</button>
-        <button onclick="showSection('skills')" class="nav-btn py-1">Skills</button>
-        <button onclick="showSection('projects')" class="nav-btn py-1">Projects</button>
-        <button onclick="showSection('contact')" class="bg-blue-600 px-4 py-1 rounded hover:bg-blue-700 transition">Contact</button>
+
+      <nav class="flex items-center gap-6">
+        <!-- desktop links -->
+        <div class="nav-desktop flex items-center gap-4">
+          <a href="#home" class="nav-link" data-target="home">Home</a>
+          <a href="#skills" class="nav-link" data-target="skills">Skills</a>
+          <a href="#projects" class="nav-link" data-target="projects">Projects</a>
+          <a href="#contact" class="nav-link" data-target="contact">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 font-medium text-white hidden sm:inline-flex">Hire Me</a>
+
+          <button class="nav-mobile-btn p-2 rounded-md focus:outline-none" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu">
+            <i class="fas fa-bars text-lg"></i>
+          </button>
+        </div>
       </nav>
-      <button class="md:hidden text-xl" onclick="toggleMobileMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-gray-800 py-2 px-4">
-      <button onclick="showSection('hero')" class="block w-full text-left py-2">Home</button>
-      <button onclick="showSection('skills')" class="block w-full text-left py-2">Skills</button>
-      <button onclick="showSection('projects')" class="block w-full text-left py-2">Projects</button>
-      <button onclick="showSection('contact')" class="block w-full text-left py-2">Contact</button>
+
+    <!-- mobile panel -->
+    <div id="mobileMenu" class="sm:hidden bg-transparent px-4 py-3 transform opacity-0 -translate-y-2 mobile-panel" style="display:none">
+      <div class="bg-gray-900 rounded-xl p-3 card">
+        <a href="#home" class="block py-2 px-2 nav-link" data-target="home">Home</a>
+        <a href="#skills" class="block py-2 px-2 nav-link" data-target="skills">Skills</a>
+        <a href="#projects" class="block py-2 px-2 nav-link" data-target="projects">Projects</a>
+        <a href="#contact" class="block py-2 px-2 nav-link" data-target="contact">Contact</a>
+      </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow">
-    <!-- Hero Section -->
-    <section id="hero" class="section-active py-12 px-4 md:px-8 fade-in">
-      <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Varun Gupta</h2>
-          <h3 class="text-2xl md:text-3xl text-blue-400 mb-6">Full Stack Developer</h3>
-          <p class="text-lg mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
-            I build efficient, scalable web applications with 1 year of professional experience using modern technologies like React, .NET Core, and cloud services.
-          </p>
-          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
-            <a href="#contact" onclick="showSection('contact')" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition text-center">Hire Me</a>
-            <a href="./resume.pdf" class="border border-white hover:bg-white hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition text-center">Download CV</a>
+  <!-- Floating blobs -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="float-blob" style="width:420px;height:420px;right:-120px;top:-80px;background:linear-gradient(90deg,#7c3aed,#3b82f6)"></div>
+    <div class="float-blob" style="width:260px;height:260px;left:-60px;bottom:-40px;background:linear-gradient(90deg,#06b6d4,#60a5fa)"></div>
+  </div>
+
+  <!-- Main -->
+  <main class="flex-1">
+    <!-- Hero -->
+    <section id="home" class="container mx-auto px-4 py-20">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="text-sm text-indigo-300 uppercase tracking-wider mb-3">Hello — I build delightful web experiences</p>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">I'm <span class="text-white">Varun Gupta</span> — <span class="typewriter">Full Stack Developer</span></h1>
+          <p class="text-gray-300 max-w-xl mb-6 reveal">I build efficient, scalable web applications using React, .NET Core, SignalR and cloud-native patterns. I enjoy turning complex problems into simple, beautiful solutions.</p>
+
+          <div class="flex gap-3 items-center">
+            <a href="#projects" class="px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 font-medium shadow hover:shadow-lg transition transform hover:-translate-y-1">See Projects</a>
+            <a href="mailto:varungupta00v7@gmail.com" class="px-4 py-2 rounded-lg btn-ghost">Say Hello</a>
+          </div>
+
+          <div class="mt-8 grid grid-cols-3 gap-3 max-w-sm">
+            <div class="text-center">
+              <div class="text-2xl font-bold">1+</div>
+              <div class="text-xs text-gray-400">Years Experience</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold">10+</div>
+              <div class="text-xs text-gray-400">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold">React</div>
+              <div class="text-xs text-gray-400">Primary Stack</div>
+            </div>
           </div>
         </div>
-        <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
-          <img src="https://via.placeholder.com/400" alt="Varun Gupta" class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-blue-600">
-        </div>
-      </div>
-    </section>
 
-
-    <!-- Skills Section -->
-    <section id="skills" class="section-hidden py-12 px-4 md:px-8">
-      <div class="container mx-auto max-w-6xl">
-        <h2 class="text-3xl font-bold mb-12 text-center">My Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-react"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">React.js</h3>
-            <p class="text-gray-300 text-sm">Building interactive UIs with reusable components</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-server"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">.NET Core</h3>
-            <p class="text-gray-300 text-sm">Robust backend services and APIs</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">SQL</h3>
-            <p class="text-gray-300 text-sm">Database design and optimization</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-bolt"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">SignalR</h3>
-            <p class="text-gray-300 text-sm">Real-time communication features</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-css3-alt"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Tailwind CSS</h3>
-            <p class="text-gray-300 text-sm">Modern, responsive styling</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-git-alt"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Git</h3>
-            <p class="text-gray-300 text-sm">Version control and collaboration</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fab fa-aws"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">Azure DevOps</h3>
-            <p class="text-gray-300 text-sm">CI/CD pipelines and deployment</p>
-          </div>
-          
-          <!-- Skill Card -->
-          <div class="bg-gray-800 p-6 rounded-xl card-hover">
-            <div class="text-blue-400 text-4xl mb-4">
-              <i class="fas fa-project-diagram"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-2">REST APIs</h3>
-            <p class="text-gray-300 text-sm">Designing efficient endpoints</p>
+        <div class="flex justify-center md:justify-end">
+          <div class="w-80 h-80 rounded-2xl overflow-hidden card p-4">
+            <img src="https://via.placeholder.com/400" alt="Varun" class="w-full h-full object-cover rounded-xl transform hover:scale-105 transition duration-500">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section-hidden py-12 px-4 md:px-8">
-      <div class="container mx-auto max-w-6xl">
-        <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Project 1 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-blue-600 flex items-center justify-center">
-              <i class="fas fa-user-md text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Doctora App</h3>
-              <p class="text-gray-300 mb-4">Healthcare OPD management system with real-time patient-doctor interaction</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">React.js</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">.NET Core</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SignalR</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
-              </div>
-              <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
-                <a href="https://www.doctora.live" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                  <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                </a>
-                <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                  <i class="fab fa-github mr-2"></i> Code
-                </a>
-              </div>
-            </div>
+    <!-- Skills -->
+    <section id="skills" class="container mx-auto px-4 py-12">
+      <h2 class="text-3xl font-bold mb-6">Skills</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Skill card -> use reveal on scroll -->
+        <div class="p-6 rounded-xl card reveal" data-reveal>
+          <div class="text-3xl mb-3 text-indigo-400"><i class="fab fa-react"></i></div>
+          <h3 class="font-semibold mb-1">React.js</h3>
+          <p class="text-sm text-gray-300">Reusable components, hooks, state management and performance tuning.</p>
+        </div>
+
+        <div class="p-6 rounded-xl card reveal" data-reveal>
+          <div class="text-3xl mb-3 text-indigo-400"><i class="fas fa-server"></i></div>
+          <h3 class="font-semibold mb-1">.NET Core</h3>
+          <p class="text-sm text-gray-300">Designing REST APIs, background jobs and reliable services.</p>
+        </div>
+
+        <div class="p-6 rounded-xl card reveal" data-reveal>
+          <div class="text-3xl mb-3 text-indigo-400"><i class="fas fa-database"></i></div>
+          <h3 class="font-semibold mb-1">SQL</h3>
+          <p class="text-sm text-gray-300">Schema design, queries & optimization for performance at scale.</p>
+        </div>
+
+        <div class="p-6 rounded-xl card reveal" data-reveal>
+          <div class="text-3xl mb-3 text-indigo-400"><i class="fas fa-bolt"></i></div>
+          <h3 class="font-semibold mb-1">SignalR</h3>
+          <p class="text-sm text-gray-300">Real-time messaging and collaborative features.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="container mx-auto px-4 py-12">
+      <h2 class="text-3xl font-bold mb-6">Featured Projects</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Project card with tilt effect -->
+        <div class="p-6 rounded-2xl card overflow-hidden transform transition-all" data-tilt>
+          <div class="h-44 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-user-md"></i></div>
+          <h3 class="text-xl font-semibold">Doctora App</h3>
+          <p class="text-sm text-gray-300 mb-3">Healthcare OPD management system with real-time patient-doctor interaction using SignalR.</p>
+          <div class="flex gap-3">
+            <a href="https://www.doctora.live" target="_blank" class="text-indigo-200 hover:underline">Live</a>
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-200 hover:underline">Code</a>
           </div>
-          
-          <!-- Project 2 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-purple-600 flex items-center justify-center">
-              <i class="fas fa-graduation-cap text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">AcademyGo</h3>
-              <p class="text-gray-300 mb-4">E-learning backend API with batch, course, test, and trainee management</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">.NET Core</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Azure DevOps</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">REST API</span>
-              </div>
-              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                <i class="fab fa-github mr-2"></i> Code
-              </a>
-            </div>
+        </div>
+
+        <div class="p-6 rounded-2xl card overflow-hidden transform transition-all" data-tilt>
+          <div class="h-44 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-graduation-cap"></i></div>
+          <h3 class="text-xl font-semibold">AcademyGo</h3>
+          <p class="text-sm text-gray-300 mb-3">E-learning backend API with batch, course, test, and trainee management.</p>
+          <div class="flex gap-3">
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-200 hover:underline">Code</a>
           </div>
-          
-          <!-- Project 3 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-green-600 flex items-center justify-center">
-              <i class="fas fa-tasks text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Task Manager App</h3>
-              <p class="text-gray-300 mb-4">Responsive web app for personal and team-based task management</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">HTML5</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">CSS3</span>
-                <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
-              </div>
-              <a href="https://github.com/Varun-dev7/nexus-task-manager" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                <i class="fab fa-github mr-2"></i> Code
-              </a>
-            </div>
+        </div>
+
+        <div class="p-6 rounded-2xl card overflow-hidden transform transition-all" data-tilt>
+          <div class="h-44 bg-gradient-to-r from-green-600 to-yellow-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-tasks"></i></div>
+          <h3 class="text-xl font-semibold">Task Manager App</h3>
+          <p class="text-sm text-gray-300 mb-3">Responsive web app for personal and team-based task management.</p>
+          <div class="flex gap-3">
+            <a href="https://github.com/Varun-dev7/nexus-task-manager" target="_blank" class="text-indigo-200 hover:underline">Code</a>
           </div>
-          
-          <!-- Project 4 -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden card-hover">
-            <div class="h-48 bg-yellow-600 flex items-center justify-center">
-              <i class="fas fa-code text-6xl text-white"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">More Projects</h3>
-              <p class="text-gray-300 mb-4">Check out my GitHub for additional projects and contributions</p>
-              <a href="https://github.com/Varun-dev7" target="_blank" class="text-blue-400 hover:underline flex items-center justify-center sm:justify-start">
-                <i class="fab fa-github mr-2"></i> GitHub Profile
-              </a>
-            </div>
+        </div>
+
+        <div class="p-6 rounded-2xl card overflow-hidden transform transition-all" data-tilt>
+          <div class="h-44 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-code"></i></div>
+          <h3 class="text-xl font-semibold">More Projects</h3>
+          <p class="text-sm text-gray-300 mb-3">Check out my GitHub for additional projects and contributions.</p>
+          <div class="flex gap-3">
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-200 hover:underline">GitHub</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section-hidden py-12 px-4 md:px-8">
-      <div class="container mx-auto max-w-4xl">
-        <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
-        <div class="bg-gray-800 rounded-xl p-6 md:p-8">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-              <div class="space-y-4">
-                <div class="flex items-center">
-                  <div class="bg-blue-600 p-3 rounded-full mr-4">
-                    <i class="fas fa-envelope"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-400">Email</p>
-                    <a href="mailto:varungupta00v7@gmail.com" class="hover:text-blue-400 break-all">varungupta00v7@gmail.com</a>
-                  </div>
-                </div>
-                
-                <div class="flex items-center">
-                  <div class="bg-blue-600 p-3 rounded-full mr-4">
-                    <i class="fas fa-phone"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-400">Phone</p>
-                    <p>+91-8303843172</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-center">
-                  <div class="bg-blue-600 p-3 rounded-full mr-4">
-                    <i class="fab fa-linkedin-in"></i>
-                  </div>
-                  <div>
-                    <p class="text-gray-400">LinkedIn</p>
-                    <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="hover:text-blue-400 break-all">linkedin.com/in/varun-gupta</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h3 class="text-xl font-semibold mb-4">Send Me a Message</h3>
-              <form class="space-y-4">
-                <div>
-                  <label for="name" class="block mb-1">Name</label>
-                  <input type="text" id="name" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
-                
-                <div>
-                  <label for="email" class="block mb-1">Email</label>
-                  <input type="email" id="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
-                
-                <div>
-                  <label for="message" class="block mb-1">Message</label>
-                  <textarea id="message" rows="4" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
-                
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition w-full">Send Message</button>
-              </form>
-            </div>
+    <!-- Contact -->
+    <section id="contact" class="container mx-auto px-4 py-12">
+      <h2 class="text-3xl font-bold mb-6">Contact</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card p-6 rounded-xl">
+          <h3 class="font-semibold mb-4">Get in touch</h3>
+          <p class="text-gray-300 mb-4">Email: <a href="mailto:varungupta00v7@gmail.com" class="text-indigo-300">varungupta00v7@gmail.com</a><br/>Phone: +91-8303843172</p>
+          <div class="flex gap-3">
+            <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="btn-ghost px-4 py-2 rounded-lg">LinkedIn</a>
+            <a href="https://github.com/Varun-dev7" target="_blank" class="btn-ghost px-4 py-2 rounded-lg">GitHub</a>
           </div>
         </div>
+
+        <form class="card p-6 rounded-xl" onsubmit="event.preventDefault();alert('Thanks — message simulated (form submission not implemented in this static demo).')">
+          <label class="block mb-2 text-sm">Name</label>
+          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700" placeholder="Your name" required />
+          <label class="block mb-2 text-sm">Email</label>
+          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700" placeholder="you@domain.com" type="email" required />
+          <label class="block mb-2 text-sm">Message</label>
+          <textarea class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700" rows="4" placeholder="How can I help?" required></textarea>
+          <button class="w-full py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500">Send Message</button>
+        </form>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 py-6">
-    <div class="container mx-auto px-4 text-center">
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://github.com/Varun-dev7" target="_blank" class="text-gray-400 hover:text-white text-xl">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-gray-400 hover:text-white text-xl">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:varungupta00v7@gmail.com" class="text-gray-400 hover:text-white text-xl">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-      <p>&copy; 2024 Varun Gupta. All rights reserved.</p>
-    </div>
+  <footer class="py-8">
+    <div class="container mx-auto px-4 text-center text-sm text-gray-400">© 2025 Varun Gupta — Built with care · <a href="#home" class="text-indigo-300 hover:underline">Back to top</a></div>
   </footer>
 
   <script>
-    // Navigation functionality
-    function showSection(sectionId) {
-      // Hide all sections
-      document.querySelectorAll('main section').forEach(section => {
-        section.classList.remove('section-active', 'fade-in');
-        section.classList.add('section-hidden');
-      });
-      
-      // Show selected section
-      const section = document.getElementById(sectionId);
-      section.classList.remove('section-hidden');
-      section.classList.add('section-active');
-      
-      // Trigger fade-in animation
-      setTimeout(() => {
-        section.classList.add('fade-in');
-      }, 10);
-      
-      // Update active nav button
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active-nav');
-      });
-      
-      if (sectionId !== 'contact') {
-        const activeBtn = document.querySelector(button[onclick="showSection('${sectionId}')"]);
-        if (activeBtn) activeBtn.classList.add('active-nav');
-      }
-      
-      // Close mobile menu if open
-      document.getElementById('mobileMenu').classList.add('hidden');
-      
-      // Scroll to top of section
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Smooth nav scrolling & active link
+    const links = document.querySelectorAll('.nav-link');
+    function setActive(target){
+      links.forEach(l=>l.classList.remove('active'));
+      document.querySelectorAll(`.nav-link[data-target='${target}']`).forEach(el=>el.classList.add('active'));
     }
-    
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    }
-    
-    // Set hero as default section
-    document.addEventListener('DOMContentLoaded', () => {
-      showSection('hero');
+
+    links.forEach(link=>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        const t = link.getAttribute('data-target');
+        const el = document.getElementById(t);
+        if(!el) return;
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        setActive(t);
+        // close mobile
+        toggleMobile(false);
+      })
     });
+
+    // Mobile menu toggle
+    const mobileToggleBtn = document.getElementById('mobileToggle');
+    const mobilePanel = document.getElementById('mobileMenu');
+    function toggleMobile(open){
+      const isOpen = mobilePanel.style.display === 'block';
+      const want = (open === undefined) ? !isOpen : open;
+      if(want){
+        mobilePanel.style.display = 'block';
+        requestAnimationFrame(()=>{ mobilePanel.style.opacity = '1'; mobilePanel.style.transform='translateY(0)'; });
+        mobileToggleBtn.setAttribute('aria-expanded','true');
+      } else {
+        mobilePanel.style.opacity = '0'; mobilePanel.style.transform='translateY(-6px)';
+        mobileToggleBtn.setAttribute('aria-expanded','false');
+        setTimeout(()=> mobilePanel.style.display='none', 220);
+      }
+    }
+    mobileToggleBtn.addEventListener('click', ()=> toggleMobile());
+
+    // Header shrink on scroll
+    const header = document.getElementById('siteHeader');
+    const hero = document.getElementById('home');
+    const headerObserver = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      });
+    },{root:null,threshold:0,rootMargin:'-80px 0px 0px 0px'});
+    headerObserver.observe(hero);
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const revObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); revObserver.unobserve(entry.target); }
+      });
+    }, {threshold:0.12});
+    reveals.forEach(r=>revObserver.observe(r));
+
+    // tilt effect for project cards
+    document.querySelectorAll('[data-tilt]').forEach(card=>{
+      card.addEventListener('mousemove', (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${ -y * 6 }deg) rotateY(${ x * 8 }deg) translateY(-6px)`;
+      });
+      card.addEventListener('mouseleave', ()=>{ card.style.transform = 'none'; });
+    });
+
+    // set first nav active on load
+    setActive('home');
   </script>
 </body>
-</html> make a impress protfolio with animation and animated navbar
+</html>
