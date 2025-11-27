@@ -5,53 +5,241 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Varun Gupta — Professional Portfolio</title>
   <meta name="description" content="Varun Gupta — Full Stack Developer. Professional portfolio with elegant animations, interactive navbar, micro-interactions and polished UI." />
+
+  <!-- Tailwind + Icons + Font -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--accent:#2563eb;--glass:rgba(255,255,255,0.04);}
-    html,body{height:100%;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#071226 0%, #081025 100%);color:#e6eef8}
-    /* Header */
-    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);transition:all .28s ease}
-    header.scrolled{padding-top:.3rem;padding-bottom:.3rem;box-shadow:0 8px 30px rgba(2,6,23,.6);background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
-    .brand{display:flex;align-items:center;gap:.6rem}
-    .brand-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,var(--accent),#7c3aed);box-shadow:0 10px 30px rgba(37,99,235,.14)}
 
-    /* Nav */
-    .nav-link{position:relative;padding:8px 10px;color:rgba(230,238,248,.84);transition:color .18s}
-    .nav-link::after{content:'';position:absolute;left:50%;transform:translateX(-50%) scaleX(0);bottom:-7px;height:3px;width:48%;background:var(--accent);border-radius:999px;transition:transform .25s cubic-bezier(.2,.9,.2,1),opacity .2s;opacity:0}
-    .nav-link:hover{color:white}
-    .nav-link:hover::after,.nav-link.active::after{transform:translateX(-50%) scaleX(1);opacity:1}
+  <style>
+    :root {
+      --accent: #2563eb;
+      --glass: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Base */
+    html,
+    body {
+      height: 100%;
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #071226 0%, #081025 100%);
+      color: #e6eef8;
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      transition: all 0.28s ease;
+    }
+
+    header.scrolled {
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0.01)
+      );
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.14);
+    }
+
+    /* Navbar */
+    .nav-link {
+      position: relative;
+      padding: 8px 10px;
+      color: rgba(230, 238, 248, 0.84);
+      font-size: 0.95rem;
+      transition: color 0.18s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      bottom: -7px;
+      height: 3px;
+      width: 48%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition:
+        transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1),
+        opacity 0.2s ease;
+      opacity: 0;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+      opacity: 1;
+    }
 
     /* Buttons */
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:0.65rem 1rem;border-radius:12px;font-weight:600}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-    .btn-cta{background:linear-gradient(90deg,var(--accent),#7c3aed);color:white;box-shadow:0 6px 28px rgba(59,130,246,.18);}
-    .btn:hover{transform:translateY(-4px);transition:transform .18s}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease;
+    }
 
-    /* Hero */
-    .typewriter{display:inline-block;white-space:nowrap;overflow:hidden;border-right:2px solid rgba(255,255,255,.12);animation:typing 3.6s steps(30,end) infinite;color:var(--accent)}
-    @keyframes typing{0%{width:0}40%{width:13ch}60%{width:13ch}100%{width:0}}
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #e5e7eb;
+    }
 
-    /* Cards and reveals */
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(6px)}
-    .reveal{opacity:0;transform:translateY(18px) scale(.995);transition:all .6s cubic-bezier(.2,.9,.2,1)}
-    .reveal.visible{opacity:1;transform:none}
+    .btn-cta {
+      background: linear-gradient(90deg, var(--accent), #7c3aed);
+      color: #ffffff;
+      box-shadow: 0 6px 28px rgba(59, 130, 246, 0.18);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    /* Hero / Typewriter */
+    .typewriter {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid rgba(255, 255, 255, 0.12);
+      animation: typing 3.6s steps(30, end) infinite;
+      color: var(--accent);
+    }
+
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      40% {
+        width: 13ch;
+      }
+      60% {
+        width: 13ch;
+      }
+      100% {
+        width: 0;
+      }
+    }
+
+    /* Cards & Reveal */
+    .card {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0.01)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(6px);
+      border-radius: 1rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px) scale(0.995);
+      transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
 
     /* Skill bars */
-    .skill-track{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
-    .skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),#7c3aed);transform-origin:left;transition:width .9s cubic-bezier(.2,.9,.2,1)}
+    .skill-track {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 999px;
+      overflow: hidden;
+    }
 
-    /* Project hover */
-    .project:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 20px 50px rgba(2,6,23,.6)}
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #7c3aed);
+      transform-origin: left;
+      transition: width 0.9s cubic-bezier(0.2, 0.9, 0.2, 1);
+    }
 
-    /* small screens tweaks */
-    @media (max-width:768px){ .nav-desktop{display:none} .nav-mobile-btn{display:block} }
-    @media (min-width:769px){ .nav-mobile-btn{display:none} }
+    /* Projects */
+    .project {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
 
-    /* Footer link */
-    a.under{transition:all .18s;color:rgba(255,255,255,.7)}
-    a.under:hover{color:white;transform:translateY(-2px)}
+    .project:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 50px rgba(2, 6, 23, 0.6);
+    }
+
+    /* Links (footer + project) */
+    a.under {
+      transition: all 0.18s ease;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    a.under:hover {
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive navbar */
+    .nav-mobile-btn {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav-desktop {
+        display: none;
+      }
+
+      .nav-mobile-btn {
+        display: block;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .nav-mobile-btn {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -76,16 +264,24 @@
         </div>
 
         <div class="flex items-center gap-3">
-          <a href="#contact" class="btn btn-cta hidden sm:inline-flex">Hire Me <i class="fas fa-arrow-right ml-2"></i></a>
-          <button class="nav-mobile-btn p-2 rounded-md focus:outline-none" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu">
+          <a href="#contact" class="btn btn-cta hidden sm:inline-flex">
+            Hire Me <i class="fas fa-arrow-right ml-1"></i>
+          </a>
+          <button
+            class="nav-mobile-btn p-2 rounded-md focus:outline-none"
+            id="mobileToggle"
+            aria-expanded="false"
+            aria-controls="mobileMenu">
             <i class="fas fa-bars text-lg"></i>
           </button>
         </div>
       </nav>
     </div>
 
-    <!-- mobile panel -->
-    <div id="mobileMenu" class="sm:hidden bg-transparent px-4 py-3 transform opacity-0 -translate-y-2" style="display:none">
+    <!-- Mobile panel -->
+    <div id="mobileMenu"
+         class="sm:hidden bg-transparent px-4 py-3 transform opacity-0 -translate-y-2"
+         style="display:none">
       <div class="bg-gray-900 rounded-xl p-3 card">
         <a href="#home" class="block py-2 px-2 nav-link" data-target="home">Home</a>
         <a href="#skills" class="block py-2 px-2 nav-link" data-target="skills">Skills</a>
@@ -96,16 +292,25 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Main -->
   <main class="flex-1">
+    <!-- Hero -->
     <section id="home" class="container mx-auto px-6 py-20">
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <p class="text-sm text-indigo-300 uppercase tracking-wider mb-3">Crafting scalable web products</p>
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Hi, I'm <span class="text-white">Varun Gupta</span><br class="hidden md:block"/> <span class="typewriter">Full Stack Developer</span></h1>
-          <p class="text-gray-300 max-w-xl mb-6 reveal">I build robust, maintainable web applications using React, .NET Core and cloud platforms. I focus on performant UI, reliable backends and delightful UX.</p>
+          <p class="text-sm text-indigo-300 uppercase tracking-wider mb-3">
+            Crafting scalable web products
+          </p>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+            Hi, I'm <span class="text-white">Varun Gupta</span><br class="hidden md:block" />
+            <span class="typewriter">Full Stack Developer</span>
+          </h1>
+          <p class="text-gray-300 max-w-xl mb-6 reveal" data-reveal>
+            I build robust, maintainable web applications using React, .NET Core and
+            cloud platforms. I focus on performant UI, reliable backends and delightful UX.
+          </p>
 
-          <div class="flex gap-3 items-center">
+          <div class="flex flex-wrap gap-3 items-center">
             <a href="#projects" class="btn btn-cta">See Work</a>
             <a href="mailto:varungupta00v7@gmail.com" class="btn btn-ghost">Contact</a>
             <a href="./resume.pdf" class="btn btn-ghost">Download CV</a>
@@ -129,7 +334,10 @@
 
         <div class="flex justify-center md:justify-end">
           <div class="w-full max-w-md rounded-2xl overflow-hidden card p-3">
-            <img src="https://via.placeholder.com/720x720" alt="Varun" class="w-full h-full object-cover rounded-xl transform hover:scale-105 transition duration-500">
+            <!-- Replace with your own image -->
+            <img src="https://via.placeholder.com/720x720"
+                 alt="Varun Gupta"
+                 class="w-full h-full object-cover rounded-xl transform hover:scale-105 transition duration-500">
           </div>
         </div>
       </div>
@@ -141,56 +349,88 @@
       <div class="grid md:grid-cols-2 gap-6">
         <div class="p-6 rounded-xl card reveal" data-reveal>
           <h3 class="font-semibold mb-3">Frontend</h3>
-          <p class="text-sm text-gray-300 mb-4">React, hooks, component design, accessibility, performance optimization and state management.</p>
+          <p class="text-sm text-gray-300 mb-4">
+            React, hooks, component design, accessibility, performance optimization and state management.
+          </p>
           <div class="space-y-3">
             <div>
-              <div class="flex justify-between text-sm mb-1"><span>React.js</span><span>85%</span></div>
-              <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>React.js</span><span>85%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="width:85%"></div>
+              </div>
             </div>
             <div>
-              <div class="flex justify-between text-sm mb-1"><span>Tailwind / CSS</span><span>80%</span></div>
-              <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Tailwind / CSS</span><span>80%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="width:80%"></div>
+              </div>
             </div>
             <div>
-              <div class="flex justify-between text-sm mb-1"><span>TypeScript / JS</span><span>78%</span></div>
-              <div class="skill-track"><div class="skill-fill" style="width:78%"></div></div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>TypeScript / JS</span><span>78%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="width:78%"></div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="p-6 rounded-xl card reveal" data-reveal>
           <h3 class="font-semibold mb-3">Backend & Cloud</h3>
-          <p class="text-sm text-gray-300 mb-4">.NET Core, REST API design, SQL, background processing, Azure & DevOps pipelines.</p>
+          <p class="text-sm text-gray-300 mb-4">
+            .NET Core, REST API design, SQL, background processing, Azure & DevOps pipelines.
+          </p>
           <div class="space-y-3">
             <div>
-              <div class="flex justify-between text-sm mb-1"><span>.NET Core</span><span>82%</span></div>
-              <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>.NET Core</span><span>82%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="width:82%"></div>
+              </div>
             </div>
             <div>
-              <div class="flex justify-between text-sm mb-1"><span>SQL</span><span>80%</span></div>
-              <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>SQL</span><span>80%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="width:80%"></div>
+              </div>
             </div>
             <div>
-              <div class="flex justify-between text-sm mb-1"><span>CI / CD</span><span>70%</span></div>
-              <div class="skill-track"><div class="skill-fill" style="width:70%"></div></div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>CI / CD</span><span>70%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" style="width:70%"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Experience / Work timeline -->
+    <!-- Experience -->
     <section id="work" class="container mx-auto px-6 py-12">
       <h2 class="text-3xl font-bold mb-6">Experience</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="p-6 rounded-xl card reveal" data-reveal>
           <h3 class="font-semibold mb-2">Full Stack Developer — Doctora</h3>
-          <p class="text-sm text-gray-300 mb-3">Built real-time patient-doctor modules using SignalR, designed APIs and improved response times by 25%.</p>
+          <p class="text-sm text-gray-300 mb-3">
+            Built real-time patient-doctor modules using SignalR, designed APIs and improved response times by 25%.
+          </p>
           <div class="text-xs text-gray-400">2024 — Present</div>
         </div>
         <div class="p-6 rounded-xl card reveal" data-reveal>
           <h3 class="font-semibold mb-2">Backend Developer — AcademyGo</h3>
-          <p class="text-sm text-gray-300 mb-3">Designed modular backend for e-learning platform, automated deployments and created monitoring dashboards.</p>
+          <p class="text-sm text-gray-300 mb-3">
+            Designed modular backend for e-learning platform, automated deployments and created monitoring dashboards.
+          </p>
           <div class="text-xs text-gray-400">2023 — 2024</div>
         </div>
       </div>
@@ -201,31 +441,56 @@
       <h2 class="text-3xl font-bold mb-6">Selected Projects</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-user-md"></i></div>
+          <div class="h-44 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
+            <i class="fas fa-user-md"></i>
+          </div>
           <h3 class="text-xl font-semibold">Doctora App</h3>
-          <p class="text-sm text-gray-300 mb-3">Healthcare OPD management with real-time chat and scheduling.</p>
-          <div class="flex gap-3"><a href="https://www.doctora.live" target="_blank" class="text-indigo-300 under">Live</a><a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">Code</a></div>
+          <p class="text-sm text-gray-300 mb-3">
+            Healthcare OPD management with real-time chat and scheduling.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://www.doctora.live" target="_blank" class="text-indigo-300 under">Live</a>
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">Code</a>
+          </div>
         </article>
 
         <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-graduation-cap"></i></div>
+          <div class="h-44 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
           <h3 class="text-xl font-semibold">AcademyGo</h3>
-          <p class="text-sm text-gray-300 mb-3">E-learning backend services and administration portal.</p>
-          <div class="flex gap-3"><a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">Code</a></div>
+          <p class="text-sm text-gray-300 mb-3">
+            E-learning backend services and administration portal.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">Code</a>
+          </div>
         </article>
 
         <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-green-600 to-yellow-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-tasks"></i></div>
+          <div class="h-44 bg-gradient-to-r from-green-600 to-yellow-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
+            <i class="fas fa-tasks"></i>
+          </div>
           <h3 class="text-xl font-semibold">Task Manager App</h3>
-          <p class="text-sm text-gray-300 mb-3">Responsive task tracker with collaboration features.</p>
-          <div class="flex gap-3"><a href="https://github.com/Varun-dev7/react-taskmanager-app" target="_blank" class="text-indigo-300 under">Code</a></div>
+          <p class="text-sm text-gray-300 mb-3">
+            Responsive task tracker with collaboration features.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://github.com/Varun-dev7/react-taskmanager-app" target="_blank" class="text-indigo-300 under">Code</a>
+          </div>
         </article>
 
         <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl"><i class="fas fa-code"></i></div>
+          <div class="h-44 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
+            <i class="fas fa-code"></i>
+          </div>
           <h3 class="text-xl font-semibold">Other Contributions</h3>
-          <p class="text-sm text-gray-300 mb-3">Open-source contributions and utilities — view on GitHub.</p>
-          <div class="flex gap-3"><a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">GitHub</a></div>
+          <p class="text-sm text-gray-300 mb-3">
+            Open-source contributions and utilities — view on GitHub.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">GitHub</a>
+          </div>
         </article>
       </div>
     </section>
@@ -236,21 +501,34 @@
       <div class="grid md:grid-cols-2 gap-6">
         <div class="card p-6 rounded-xl reveal" data-reveal>
           <h3 class="font-semibold mb-3">Contact</h3>
-          <p class="text-gray-300 mb-4">Email: <a href="mailto:varungupta00v7@gmail.com" class="text-indigo-300">varungupta00v7@gmail.com</a><br/>Phone: +91-8303843172</p>
+          <p class="text-gray-300 mb-4">
+            Email:
+            <a href="mailto:varungupta00v7@gmail.com" class="text-indigo-300">
+              varungupta00v7@gmail.com
+            </a><br/>
+            Phone: +91-8303843172
+          </p>
           <div class="flex gap-3">
             <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="btn btn-ghost">LinkedIn</a>
             <a href="https://github.com/Varun-dev7" target="_blank" class="btn btn-ghost">GitHub</a>
           </div>
         </div>
 
-        <form class="card p-6 rounded-xl reveal" data-reveal onsubmit="event.preventDefault();alert('Thanks — message simulated (static demo).')">
+        <form class="card p-6 rounded-xl reveal"
+              data-reveal
+              onsubmit="event.preventDefault(); alert('Thanks — message simulated (static demo).');">
           <label class="block mb-2 text-sm">Name</label>
-          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700" placeholder="Your name" required />
+          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700"
+                 placeholder="Your name" required />
           <label class="block mb-2 text-sm">Email</label>
-          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700" placeholder="you@domain.com" type="email" required />
+          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700"
+                 placeholder="you@domain.com" type="email" required />
           <label class="block mb-2 text-sm">Message</label>
-          <textarea class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700" rows="4" placeholder="How can I help?" required></textarea>
-          <button class="w-full py-3 rounded-lg btn btn-cta">Send Message</button>
+          <textarea class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700"
+                    rows="4" placeholder="How can I help?" required></textarea>
+          <button class="w-full py-3 rounded-lg btn btn-cta">
+            Send Message
+          </button>
         </form>
       </div>
     </section>
@@ -258,79 +536,123 @@
 
   <!-- Footer -->
   <footer class="py-8">
-    <div class="container mx-auto px-6 text-center text-sm text-gray-400">© 2025 Varun Gupta · Built with care · <a href="#home" class="text-indigo-300 hover:underline">Back to top</a></div>
+    <div class="container mx-auto px-6 text-center text-sm text-gray-400">
+      © 2025 Varun Gupta · Built with care ·
+      <a href="#home" class="text-indigo-300 hover:underline">Back to top</a>
+    </div>
   </footer>
 
   <script>
     // Smooth nav scrolling & active link
-    const links = document.querySelectorAll('.nav-link');
-    function setActive(target){
-      links.forEach(l=>l.classList.remove('active'));
-      document.querySelectorAll(`.nav-link[data-target='${target}']`).forEach(el=>el.classList.add('active'));
+    const links = document.querySelectorAll(".nav-link");
+
+    function setActive(target) {
+      links.forEach((l) => l.classList.remove("active"));
+      document
+        .querySelectorAll(".nav-link[data-target='" + target + "']")
+        .forEach((el) => el.classList.add("active"));
     }
 
-    links.forEach(link=>{
-      link.addEventListener('click', e=>{
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = link.getAttribute("data-target");
+        if (!target) return;
+
+        // For nav links, prevent default and do smooth scroll
         e.preventDefault();
-        const t = link.getAttribute('data-target');
-        const el = document.getElementById(t);
-        if(!el) return;
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-        setActive(t);
+        const el = document.getElementById(target);
+        if (!el) return;
+
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActive(target);
         toggleMobile(false);
-      })
+      });
     });
 
     // Mobile menu toggle
-    const mobileToggleBtn = document.getElementById('mobileToggle');
-    const mobilePanel = document.getElementById('mobileMenu');
-    function toggleMobile(open){
-      const isOpen = mobilePanel.style.display === 'block';
-      const want = (open === undefined) ? !isOpen : open;
-      if(want){
-        mobilePanel.style.display = 'block';
-        requestAnimationFrame(()=>{ mobilePanel.style.opacity = '1'; mobilePanel.style.transform='translateY(0)'; });
-        mobileToggleBtn.setAttribute('aria-expanded','true');
+    const mobileToggleBtn = document.getElementById("mobileToggle");
+    const mobilePanel = document.getElementById("mobileMenu");
+
+    function toggleMobile(open) {
+      const isOpen = mobilePanel.style.display === "block";
+      const want = open === undefined ? !isOpen : open;
+
+      if (want) {
+        mobilePanel.style.display = "block";
+        requestAnimationFrame(() => {
+          mobilePanel.style.opacity = "1";
+          mobilePanel.style.transform = "translateY(0)";
+        });
+        mobileToggleBtn.setAttribute("aria-expanded", "true");
       } else {
-        mobilePanel.style.opacity = '0'; mobilePanel.style.transform='translateY(-6px)';
-        mobileToggleBtn.setAttribute('aria-expanded','false');
-        setTimeout(()=> mobilePanel.style.display='none', 220);
+        mobilePanel.style.opacity = "0";
+        mobilePanel.style.transform = "translateY(-6px)";
+        mobileToggleBtn.setAttribute("aria-expanded", "false");
+        setTimeout(() => (mobilePanel.style.display = "none"), 220);
       }
     }
-    mobileToggleBtn.addEventListener('click', ()=> toggleMobile());
+
+    if (mobileToggleBtn) {
+      mobileToggleBtn.addEventListener("click", () => toggleMobile());
+    }
 
     // Header shrink on scroll
-    const header = document.getElementById('siteHeader');
-    const hero = document.getElementById('home');
-    const headerObserver = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(!e.isIntersecting) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-      });
-    },{root:null,threshold:0,rootMargin:'-80px 0px 0px 0px'});
-    headerObserver.observe(hero);
+    const header = document.getElementById("siteHeader");
+    const hero = document.getElementById("home");
+
+    if (header && hero) {
+      const headerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) {
+              header.classList.add("scrolled");
+            } else {
+              header.classList.remove("scrolled");
+            }
+          });
+        },
+        { root: null, threshold: 0, rootMargin: "-80px 0px 0px 0px" }
+      );
+
+      headerObserver.observe(hero);
+    }
 
     // Reveal on scroll
-    const reveals = document.querySelectorAll('[data-reveal]');
-    const revObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry => {
-        if(entry.isIntersecting){ entry.target.classList.add('visible'); revObserver.unobserve(entry.target); }
-      });
-    }, {threshold:0.12});
-    reveals.forEach(r=>revObserver.observe(r));
+    const reveals = document.querySelectorAll("[data-reveal]");
+    const revObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    reveals.forEach((r) => revObserver.observe(r));
 
     // Project hover tilt subtle
-    document.querySelectorAll('.project').forEach(card=>{
-      card.addEventListener('mousemove', (e)=>{
+    document.querySelectorAll(".project").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(900px) rotateX(${ -y * 4 }deg) rotateY(${ x * 5 }deg) translateY(-6px)`;
+        card.style.transform =
+          "perspective(900px) rotateX(" +
+          -y * 4 +
+          "deg) rotateY(" +
+          x * 5 +
+          "deg) translateY(-6px)";
       });
-      card.addEventListener('mouseleave', ()=>{ card.style.transform = 'none'; });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "none";
+      });
     });
 
-    // init active
-    setActive('home');
+    // Init first active link
+    setActive("home");
   </script>
 </body>
 </html>
