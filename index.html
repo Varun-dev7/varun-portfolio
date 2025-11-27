@@ -23,8 +23,16 @@
       height: 100%;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top left, #0b1120 0, #020617 38%, #020617 100%);
+      background-size: 240% 240%;
+      animation: gradientShift 26s ease infinite;
       color: #e5e7eb;
       scroll-behavior: smooth;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 0%; }
     }
 
     /* Header / Navbar */
@@ -35,13 +43,18 @@
       backdrop-filter: blur(14px);
       background: linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
       border-bottom: 1px solid rgba(148,163,184,0.12);
-      transition: padding 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition:
+        padding 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
     }
     header.compact {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
+      padding-top: 0.15rem;
+      padding-bottom: 0.15rem;
       box-shadow: 0 16px 40px rgba(2,6,23,0.85);
       background: linear-gradient(90deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
+      transform: translateY(-1px);
     }
 
     .nav-brand-mark {
@@ -54,7 +67,17 @@
       justify-content: center;
       font-weight: 800;
       color: #0b1120;
-      box-shadow: 0 0 0 1px rgba(148,163,184,0.3), 0 12px 30px rgba(37,99,235,0.5);
+      box-shadow:
+        0 0 0 1px rgba(148,163,184,0.3),
+        0 12px 30px rgba(37,99,235,0.5),
+        0 0 25px rgba(56,189,248,0.5);
+      animation: subtleFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes subtleFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+      100% { transform: translateY(0px); }
     }
 
     .nav-link {
@@ -62,7 +85,7 @@
       padding: 0.25rem 0.5rem;
       font-size: 0.9rem;
       color: rgba(226,232,240,0.76);
-      transition: color 0.18s ease;
+      transition: color 0.18s ease, transform 0.18s ease;
     }
     .nav-link::after {
       content: "";
@@ -79,6 +102,7 @@
     }
     .nav-link:hover {
       color: #f9fafb;
+      transform: translateY(-1px);
     }
     .nav-link.active,
     .nav-link:focus-visible {
@@ -159,6 +183,27 @@
       border-radius: 999px;
       border: 1px dashed rgba(148,163,184,0.35);
       box-shadow: 0 0 40px rgba(15,23,42,0.9);
+      animation: slowSpin 24s linear infinite;
+    }
+
+    @keyframes slowSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .float-soft {
+      animation: floatSoft 8s ease-in-out infinite;
+    }
+    @keyframes floatSoft {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .badge-glow {
+      box-shadow:
+        0 0 0 1px rgba(15,23,42,0.9),
+        0 0 18px rgba(16,185,129,0.45);
     }
 
     /* Buttons */
@@ -177,7 +222,7 @@
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
     }
     .btn-primary:hover {
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.02);
       filter: brightness(1.05);
       box-shadow: 0 18px 45px rgba(15,23,42,0.9);
     }
@@ -194,19 +239,20 @@
       border: 1px solid rgba(148,163,184,0.6);
       background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.75));
       color: #e5e7eb;
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
     .btn-secondary:hover {
       transform: translateY(-1px);
       background: linear-gradient(135deg, rgba(15,23,42,1), rgba(15,23,42,0.9));
       border-color: rgba(129,140,248,0.9);
+      box-shadow: 0 12px 32px rgba(15,23,42,0.9);
     }
 
     /* Cards / sections */
     .section-card {
       border-radius: 1.1rem;
       border: 1px solid rgba(148,163,184,0.16);
-      background: radial-gradient(circle at top left, rgba(30,64,175,0.16), rgba(15,23,42,0.96));
+      background: radial-gradient(circle at top left, rgba(30,64,175,0.18), rgba(15,23,42,0.98));
       box-shadow: 0 30px 80px rgba(2,6,23,0.9);
     }
 
@@ -214,10 +260,14 @@
       border-radius: 1rem;
       border: 1px solid rgba(148,163,184,0.2);
       background: rgba(15,23,42,0.96);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
     }
     .sub-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px) scale(1.01);
       background: rgba(15,23,42,1);
       border-color: rgba(129,140,248,0.9);
       box-shadow: 0 18px 50px rgba(15,23,42,0.9);
@@ -227,7 +277,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(18px) scale(0.985);
-      transition: all 0.6s cubic-bezier(.2,.9,.2,1);
+      transition: all 0.7s cubic-bezier(.16,.9,.2,1);
     }
     .reveal.visible {
       opacity: 1;
@@ -256,6 +306,7 @@
     .project {
       transform-style: preserve-3d;
       transform: perspective(900px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     /* Footer link */
@@ -265,6 +316,17 @@
     .footer-link:hover {
       color: #e5e7eb;
       transform: translateY(-1px);
+    }
+
+    /* Mobile menu animation */
+    #mobileMenu {
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    #mobileMenu.open {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -317,7 +379,7 @@
     <!-- HERO -->
     <section id="home" class="max-w-6xl mx-auto px-4 pt-10 pb-16">
       <div class="grid lg:grid-cols-[1.6fr_1.2fr] gap-10 items-center">
-        <div>
+        <div class="reveal" data-reveal>
           <div class="hero-eyebrow mb-3">End-to-end web development</div>
           <h1 class="hero-title text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
             I build
@@ -344,8 +406,8 @@
               <i class="fa-regular fa-file-lines text-xs"></i>
               <span>Download CV</span>
             </a>
-            <span class="chip flex items-center gap-1">
-              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="chip flex items-center gap-1 badge-glow">
+              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               Open to opportunities
             </span>
           </div>
@@ -366,20 +428,20 @@
           </div>
         </div>
 
-        <div class="relative flex justify-center lg:justify-end">
+        <div class="relative flex justify-center lg:justify-end reveal" data-reveal>
           <div class="hero-orbit w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
-            <div class="relative w-60 h-60 rounded-3xl overflow-hidden section-card flex items-center justify-center">
+            <div class="relative w-60 h-60 rounded-3xl overflow-hidden section-card flex items-center justify-center float-soft">
               <!-- Replace src with your photo -->
               <img src="https://via.placeholder.com/600x600"
                    alt="Varun Gupta"
                    class="w-full h-full object-cover">
-              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700 flex items-center gap-2">
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700 flex items-center gap-2 badge-glow">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span>Full Stack · React & .NET</span>
               </div>
             </div>
           </div>
-          <div class="absolute -top-3 -right-2 text-xs bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2 shadow-lg hidden sm:flex flex-col gap-1">
+          <div class="absolute -top-3 -right-2 text-xs bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2 shadow-lg hidden sm:flex flex-col gap-1 float-soft" style="animation-delay: 1s;">
             <div class="flex items-center gap-2">
               <i class="fa-solid fa-bolt text-amber-400 text-xs"></i>
               <span class="font-semibold">Real-time apps</span>
@@ -747,10 +809,16 @@
       const open = typeof force === "boolean" ? force : !isOpen;
       if (open) {
         mobileMenu.style.display = "block";
+        requestAnimationFrame(() => {
+          mobileMenu.classList.add("open");
+        });
         mobileToggle.setAttribute("aria-expanded", "true");
       } else {
-        mobileMenu.style.display = "none";
+        mobileMenu.classList.remove("open");
         mobileToggle.setAttribute("aria-expanded", "false");
+        setTimeout(() => {
+          mobileMenu.style.display = "none";
+        }, 200);
       }
     }
 
@@ -770,7 +838,7 @@
     window.addEventListener("scroll", onScrollHeader);
     onScrollHeader();
 
-    // Reveal on scroll
+    // Reveal on scroll (IntersectionObserver)
     const revealEls = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -779,7 +847,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15 });
     revealEls.forEach(el => observer.observe(el));
 
     // Project tilt
@@ -789,7 +857,7 @@
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         card.style.transform =
-          "perspective(900px) rotateX(" + (y * -6) + "deg) rotateY(" + (x * 8) + "deg)";
+          "perspective(900px) rotateX(" + (y * -6) + "deg) rotateY(" + (x * 8) + "deg) translateY(-4px)";
       });
       card.addEventListener("mouseleave", () => {
         card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
