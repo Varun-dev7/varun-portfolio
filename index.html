@@ -3,530 +3,692 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Varun Gupta — Professional Portfolio</title>
-  <meta name="description" content="Varun Gupta — Full Stack Developer. Professional portfolio with elegant animations, interactive navbar, micro-interactions and polished UI." />
+  <title>Varun Gupta — Full Stack Developer</title>
+  <meta name="description" content="Varun Gupta — Full Stack Developer. Building modern, scalable web applications with React and .NET." />
 
   <!-- Tailwind + Icons + Font -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --accent: #2563eb;
-      --glass: rgba(255, 255, 255, 0.04);
+      --accent-soft: rgba(37, 99, 235, 0.16);
+      --bg: #020617;
+      --bg-soft: #020617;
     }
 
-    /* Base */
-    html,
-    body {
+    html, body {
       height: 100%;
-      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background: linear-gradient(180deg, #071226 0%, #081025 100%);
-      color: #e6eef8;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0b1120 0, #020617 38%, #020617 100%);
+      color: #e5e7eb;
       scroll-behavior: smooth;
     }
 
-    /* Header */
+    /* Header / Navbar */
     header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(8px);
-      transition: all 0.28s ease;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border-bottom: 1px solid rgba(148,163,184,0.12);
+      transition: padding 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    header.compact {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      box-shadow: 0 16px 40px rgba(2,6,23,0.85);
+      background: linear-gradient(90deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
     }
 
-    header.scrolled {
-      padding-top: 0.3rem;
-      padding-bottom: 0.3rem;
-      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.02),
-        rgba(255, 255, 255, 0.01)
-      );
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .brand-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    .nav-brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #6366f1);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), #7c3aed);
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.14);
+      color: #0b1120;
+      box-shadow: 0 0 0 1px rgba(148,163,184,0.3), 0 12px 30px rgba(37,99,235,0.5);
     }
 
-    /* Navbar */
     .nav-link {
       position: relative;
-      padding: 8px 10px;
-      color: rgba(230, 238, 248, 0.84);
-      font-size: 0.95rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.9rem;
+      color: rgba(226,232,240,0.76);
       transition: color 0.18s ease;
     }
-
     .nav-link::after {
       content: "";
       position: absolute;
       left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      bottom: -7px;
-      height: 3px;
-      width: 48%;
-      background: var(--accent);
+      bottom: -0.4rem;
+      width: 0;
+      height: 2px;
       border-radius: 999px;
-      transition:
-        transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1),
-        opacity 0.2s ease;
+      background: linear-gradient(90deg, #6366f1, #22c55e);
+      transform: translateX(-50%);
+      transition: width 0.22s cubic-bezier(.2,.9,.2,1), opacity 0.18s;
       opacity: 0;
     }
-
     .nav-link:hover {
-      color: #ffffff;
+      color: #f9fafb;
     }
-
-    .nav-link:hover::after,
+    .nav-link.active,
+    .nav-link:focus-visible {
+      color: #f9fafb;
+    }
     .nav-link.active::after {
-      transform: translateX(-50%) scaleX(1);
+      width: 60%;
       opacity: 1;
     }
 
-    /* Buttons */
-    .btn {
+    .nav-cta {
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.65rem 1rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-      transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        background 0.18s ease,
-        color 0.18s ease;
+      gap: 0.4rem;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.6));
+      box-shadow: 0 0 0 1px rgba(15,23,42,1);
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: rgba(129,140,248,0.9);
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.9);
     }
 
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: #e5e7eb;
-    }
-
-    .btn-cta {
-      background: linear-gradient(90deg, var(--accent), #7c3aed);
-      color: #ffffff;
-      box-shadow: 0 6px 28px rgba(59, 130, 246, 0.18);
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
-    }
-
-    /* Hero / Typewriter */
-    .typewriter {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid rgba(255, 255, 255, 0.12);
-      animation: typing 3.6s steps(30, end) infinite;
-      color: var(--accent);
-    }
-
-    @keyframes typing {
-      0% {
-        width: 0;
-      }
-      40% {
-        width: 13ch;
-      }
-      60% {
-        width: 13ch;
-      }
-      100% {
-        width: 0;
-      }
-    }
-
-    /* Cards & Reveal */
-    .card {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.02),
-        rgba(255, 255, 255, 0.01)
-      );
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(6px);
-      border-radius: 1rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px) scale(0.995);
-      transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Skill bars */
-    .skill-track {
-      height: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .skill-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), #7c3aed);
-      transform-origin: left;
-      transition: width 0.9s cubic-bezier(0.2, 0.9, 0.2, 1);
-    }
-
-    /* Projects */
-    .project {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 20px 50px rgba(2, 6, 23, 0.6);
-    }
-
-    /* Links (footer + project) */
-    a.under {
-      transition: all 0.18s ease;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    a.under:hover {
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    /* Responsive navbar */
+    /* Mobile */
     .nav-mobile-btn {
       display: none;
     }
-
     @media (max-width: 768px) {
       .nav-desktop {
         display: none;
       }
-
       .nav-mobile-btn {
-        display: block;
+        display: inline-flex;
       }
     }
-
     @media (min-width: 769px) {
       .nav-mobile-btn {
         display: none;
       }
     }
+
+    /* Hero */
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a5b4fc;
+    }
+    .hero-title span.highlight {
+      background: linear-gradient(90deg,#e5e7eb,#a5b4fc);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .typewriter {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid rgba(148,163,184,0.8);
+      animation: typing 4s steps(32, end) infinite;
+      color: #38bdf8;
+    }
+    @keyframes typing {
+      0%   { width: 0; }
+      35%  { width: 15ch; }
+      60%  { width: 15ch; }
+      100% { width: 0; }
+    }
+
+    .hero-orbit {
+      border-radius: 999px;
+      border: 1px dashed rgba(148,163,184,0.35);
+      box-shadow: 0 0 40px rgba(15,23,42,0.9);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.75rem 1.3rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: radial-gradient(circle at top left,#4f46e5,#22c55e);
+      color: #f9fafb;
+      box-shadow: 0 16px 40px rgba(37,99,235,0.6);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.7rem 1.1rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.75));
+      color: #e5e7eb;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, rgba(15,23,42,1), rgba(15,23,42,0.9));
+      border-color: rgba(129,140,248,0.9);
+    }
+
+    /* Cards / sections */
+    .section-card {
+      border-radius: 1.1rem;
+      border: 1px solid rgba(148,163,184,0.16);
+      background: radial-gradient(circle at top left, rgba(30,64,175,0.16), rgba(15,23,42,0.96));
+      box-shadow: 0 30px 80px rgba(2,6,23,0.9);
+    }
+
+    .sub-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(148,163,184,0.2);
+      background: rgba(15,23,42,0.96);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+    .sub-card:hover {
+      transform: translateY(-4px);
+      background: rgba(15,23,42,1);
+      border-color: rgba(129,140,248,0.9);
+      box-shadow: 0 18px 50px rgba(15,23,42,0.9);
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      transition: all 0.6s cubic-bezier(.2,.9,.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .chip {
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: rgba(209,213,219,0.95);
+      background: rgba(15,23,42,0.9);
+    }
+
+    /* Timeline */
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#4f46e5,#22c55e);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.2);
+    }
+
+    /* Project tilt */
+    .project {
+      transform-style: preserve-3d;
+      transform: perspective(900px);
+    }
+
+    /* Footer link */
+    .footer-link {
+      transition: color 0.18s ease, transform 0.18s ease;
+    }
+    .footer-link:hover {
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- Header -->
-  <header id="siteHeader" class="py-5">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-      <div class="brand">
-        <div class="brand-badge text-white">VG</div>
+  <!-- HEADER -->
+  <header id="header" class="py-3">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="nav-brand-mark text-sm font-bold">VG</div>
         <div class="hidden sm:block">
-          <div class="text-lg font-semibold tracking-tight">Varun Gupta</div>
-          <div class="text-xs text-gray-300 -mt-1">Full Stack Developer</div>
+          <div class="text-sm font-semibold text-slate-100">Varun Gupta</div>
+          <div class="text-xs text-slate-400">Full Stack Developer</div>
         </div>
       </div>
 
-      <nav class="flex items-center gap-6">
-        <div class="nav-desktop flex items-center gap-3">
+      <nav class="flex items-center gap-5">
+        <div class="nav-desktop flex items-center gap-5 text-sm">
           <a href="#home" class="nav-link" data-target="home">Home</a>
           <a href="#skills" class="nav-link" data-target="skills">Skills</a>
           <a href="#projects" class="nav-link" data-target="projects">Projects</a>
-          <a href="#work" class="nav-link" data-target="work">Experience</a>
+          <a href="#experience" class="nav-link" data-target="experience">Experience</a>
           <a href="#contact" class="nav-link" data-target="contact">Contact</a>
         </div>
 
-        <div class="flex items-center gap-3">
-          <a href="#contact" class="btn btn-cta hidden sm:inline-flex">
-            Hire Me <i class="fas fa-arrow-right ml-1"></i>
-          </a>
-          <button
-            class="nav-mobile-btn p-2 rounded-md focus:outline-none"
-            id="mobileToggle"
-            aria-expanded="false"
-            aria-controls="mobileMenu">
-            <i class="fas fa-bars text-lg"></i>
-          </button>
-        </div>
+        <button class="nav-mobile-btn p-2 rounded-md border border-slate-700 text-slate-100" id="mobileToggle" aria-expanded="false">
+          <i class="fas fa-bars text-sm"></i>
+        </button>
+
+        <a href="mailto:varungupta00v7@gmail.com" class="hidden md:inline-flex nav-cta">
+          <span>Let’s talk</span>
+          <i class="fa-solid fa-paper-plane text-xs"></i>
+        </a>
       </nav>
     </div>
 
-    <!-- Mobile panel -->
-    <div id="mobileMenu"
-         class="sm:hidden bg-transparent px-4 py-3 transform opacity-0 -translate-y-2"
-         style="display:none">
-      <div class="bg-gray-900 rounded-xl p-3 card">
-        <a href="#home" class="block py-2 px-2 nav-link" data-target="home">Home</a>
-        <a href="#skills" class="block py-2 px-2 nav-link" data-target="skills">Skills</a>
-        <a href="#projects" class="block py-2 px-2 nav-link" data-target="projects">Projects</a>
-        <a href="#work" class="block py-2 px-2 nav-link" data-target="work">Experience</a>
-        <a href="#contact" class="block py-2 px-2 nav-link" data-target="contact">Contact</a>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden px-4 pt-2 pb-3 space-y-1" style="display:none;">
+      <div class="section-card p-3">
+        <a href="#home" class="block py-1 text-sm nav-link" data-target="home">Home</a>
+        <a href="#skills" class="block py-1 text-sm nav-link" data-target="skills">Skills</a>
+        <a href="#projects" class="block py-1 text-sm nav-link" data-target="projects">Projects</a>
+        <a href="#experience" class="block py-1 text-sm nav-link" data-target="experience">Experience</a>
+        <a href="#contact" class="block py-1 text-sm nav-link" data-target="contact">Contact</a>
       </div>
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <main class="flex-1">
-    <!-- Hero -->
-    <section id="home" class="container mx-auto px-6 py-20">
-      <div class="grid md:grid-cols-2 gap-10 items-center">
+    <!-- HERO -->
+    <section id="home" class="max-w-6xl mx-auto px-4 pt-10 pb-16">
+      <div class="grid lg:grid-cols-[1.6fr_1.2fr] gap-10 items-center">
         <div>
-          <p class="text-sm text-indigo-300 uppercase tracking-wider mb-3">
-            Crafting scalable web products
-          </p>
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            Hi, I'm <span class="text-white">Varun Gupta</span><br class="hidden md:block" />
-            <span class="typewriter">Full Stack Developer</span>
+          <div class="hero-eyebrow mb-3">End-to-end web development</div>
+          <h1 class="hero-title text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+            I build
+            <span class="highlight">fast & reliable</span>
+            <br />
+            web applications.
           </h1>
-          <p class="text-gray-300 max-w-xl mb-6 reveal" data-reveal>
-            I build robust, maintainable web applications using React, .NET Core and
-            cloud platforms. I focus on performant UI, reliable backends and delightful UX.
+          <p class="text-slate-300 text-sm sm:text-base mb-4">
+            I'm Varun Gupta, a full stack developer focused on React, .NET Core, and SQL.
+            I enjoy turning complex requirements into clean, scalable systems with delightful user
+            experiences.
+          </p>
+          <p class="text-slate-400 text-xs sm:text-sm mb-6">
+            Currently working with real-time communication (SignalR), modular APIs, and cloud CI/CD
+            to ship production-ready solutions.
           </p>
 
-          <div class="flex flex-wrap gap-3 items-center">
-            <a href="#projects" class="btn btn-cta">See Work</a>
-            <a href="mailto:varungupta00v7@gmail.com" class="btn btn-ghost">Contact</a>
-            <a href="./resume.pdf" class="btn btn-ghost">Download CV</a>
+          <div class="flex flex-wrap gap-3 items-center mb-8">
+            <a href="#projects" class="btn-primary">
+              <span>View Projects</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a href="./resume.pdf" class="btn-secondary">
+              <i class="fa-regular fa-file-lines text-xs"></i>
+              <span>Download CV</span>
+            </a>
+            <span class="chip flex items-center gap-1">
+              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+              Open to opportunities
+            </span>
           </div>
 
-          <div class="mt-8 grid grid-cols-3 gap-4 max-w-sm">
-            <div class="text-center">
-              <div class="text-2xl font-bold">1+</div>
-              <div class="text-xs text-gray-400">Years Experience</div>
+          <div class="flex flex-wrap gap-6 text-xs sm:text-sm text-slate-300">
+            <div>
+              <div class="font-semibold text-base">1+ year</div>
+              <div class="text-slate-400">Production experience</div>
             </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold">12+</div>
-              <div class="text-xs text-gray-400">Projects</div>
+            <div>
+              <div class="font-semibold text-base">12+ projects</div>
+              <div class="text-slate-400">built & shipped</div>
             </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold">React</div>
-              <div class="text-xs text-gray-400">Primary Stack</div>
+            <div>
+              <div class="font-semibold text-base">Full stack</div>
+              <div class="text-slate-400">React · .NET · SQL</div>
             </div>
           </div>
         </div>
 
-        <div class="flex justify-center md:justify-end">
-          <div class="w-full max-w-md rounded-2xl overflow-hidden card p-3">
-            <!-- Replace with your own image -->
-            <img src="https://via.placeholder.com/720x720"
-                 alt="Varun Gupta"
-                 class="w-full h-full object-cover rounded-xl transform hover:scale-105 transition duration-500">
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="hero-orbit w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
+            <div class="relative w-60 h-60 rounded-3xl overflow-hidden section-card flex items-center justify-center">
+              <!-- Replace src with your photo -->
+              <img src="https://via.placeholder.com/600x600"
+                   alt="Varun Gupta"
+                   class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Full Stack · React & .NET</span>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -top-3 -right-2 text-xs bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2 shadow-lg hidden sm:flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-bolt text-amber-400 text-xs"></i>
+              <span class="font-semibold">Real-time apps</span>
+            </div>
+            <div class="text-[0.68rem] text-slate-400">SignalR · Live updates</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="container mx-auto px-6 py-12">
-      <h2 class="text-3xl font-bold mb-6">Core Skills</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="p-6 rounded-xl card reveal" data-reveal>
-          <h3 class="font-semibold mb-3">Frontend</h3>
-          <p class="text-sm text-gray-300 mb-4">
-            React, hooks, component design, accessibility, performance optimization and state management.
-          </p>
-          <div class="space-y-3">
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span>React.js</span><span>85%</span>
-              </div>
-              <div class="skill-track">
-                <div class="skill-fill" style="width:85%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span>Tailwind / CSS</span><span>80%</span>
-              </div>
-              <div class="skill-track">
-                <div class="skill-fill" style="width:80%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span>TypeScript / JS</span><span>78%</span>
-              </div>
-              <div class="skill-track">
-                <div class="skill-fill" style="width:78%"></div>
-              </div>
-            </div>
+    <!-- SKILLS -->
+    <section id="skills" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="section-card p-6 sm:p-8 reveal" data-reveal>
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-50 mb-1">Core Skills</h2>
+            <p class="text-xs sm:text-sm text-slate-400">
+              A snapshot of the tools and technologies I use most often.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="chip">Frontend</span>
+            <span class="chip">Backend</span>
+            <span class="chip">Databases</span>
+            <span class="chip">DevOps</span>
           </div>
         </div>
 
-        <div class="p-6 rounded-xl card reveal" data-reveal>
-          <h3 class="font-semibold mb-3">Backend & Cloud</h3>
-          <p class="text-sm text-gray-300 mb-4">
-            .NET Core, REST API design, SQL, background processing, Azure & DevOps pipelines.
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="sub-card p-4 reveal" data-reveal>
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fa-brands fa-react text-sky-400 text-lg"></i>
+              <h3 class="font-semibold text-sm text-slate-100">Frontend</h3>
+            </div>
+            <p class="text-xs text-slate-400 mb-3">
+              Modern, accessible interfaces with React and Tailwind CSS.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1">
+              <li>• React, hooks & state management</li>
+              <li>• Tailwind CSS, component systems</li>
+              <li>• SPA patterns & performance</li>
+            </ul>
+          </div>
+
+          <div class="sub-card p-4 reveal" data-reveal>
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-server text-indigo-400 text-lg"></i>
+              <h3 class="font-semibold text-sm text-slate-100">Backend</h3>
+            </div>
+            <p class="text-xs text-slate-400 mb-3">
+              Robust APIs and real-time features using .NET Core.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1">
+              <li>• .NET Core REST APIs</li>
+              <li>• SignalR real-time communication</li>
+              <li>• Clean architecture & layering</li>
+            </ul>
+          </div>
+
+          <div class="sub-card p-4 reveal" data-reveal>
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-database text-emerald-400 text-lg"></i>
+              <h3 class="font-semibold text-sm text-slate-100">Data & Ops</h3>
+            </div>
+            <p class="text-xs text-slate-400 mb-3">
+              Data modeling, queries and deployment automation.
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1">
+              <li>• SQL schema & optimization</li>
+              <li>• Azure DevOps pipelines</li>
+              <li>• Git-based workflows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="grid md:grid-cols-[1.2fr_1.8fr] gap-8 items-start">
+        <div class="reveal" data-reveal>
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">Experience</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mb-4">
+            I’ve helped build and maintain real products used in healthcare and education.
           </p>
-          <div class="space-y-3">
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span>.NET Core</span><span>82%</span>
+          <div class="sub-card p-4 text-xs text-slate-300">
+            <div class="mb-1 font-semibold text-slate-100 text-sm">What I bring</div>
+            <ul class="space-y-1">
+              <li>• End-to-end ownership: from UI to database queries.</li>
+              <li>• Focus on clean, maintainable code and documentation.</li>
+              <li>• Strong collaboration with designers and stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-card p-5 sm:p-6 reveal" data-reveal>
+          <div class="relative pl-5 border-l border-slate-700/80 space-y-6">
+            <!-- Job 1 -->
+            <div class="relative">
+              <div class="timeline-dot absolute -left-[14px] top-1"></div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="text-sm sm:text-base font-semibold text-slate-100">
+                  Full Stack Developer · Doctora
+                </h3>
+                <span class="text-[0.65rem] text-slate-400">2024 — Present</span>
               </div>
-              <div class="skill-track">
-                <div class="skill-fill" style="width:82%"></div>
-              </div>
+              <p class="text-xs text-slate-400 mb-2">
+                Healthcare OPD management application with real-time communication and scheduling.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-1">
+                <li>• Implemented real-time patient–doctor chat using SignalR.</li>
+                <li>• Designed and optimized APIs in .NET Core.</li>
+                <li>• Improved response times and reduced latency.</li>
+              </ul>
             </div>
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span>SQL</span><span>80%</span>
+            <!-- Job 2 -->
+            <div class="relative">
+              <div class="timeline-dot absolute -left-[14px] top-1"></div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="text-sm sm:text-base font-semibold text-slate-100">
+                  Backend Developer · AcademyGo
+                </h3>
+                <span class="text-[0.65rem] text-slate-400">2023 — 2024</span>
               </div>
-              <div class="skill-track">
-                <div class="skill-fill" style="width:80%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span>CI / CD</span><span>70%</span>
-              </div>
-              <div class="skill-track">
-                <div class="skill-fill" style="width:70%"></div>
-              </div>
+              <p class="text-xs text-slate-400 mb-2">
+                E-learning platform backend with batch, course and test management.
+              </p>
+              <ul class="text-xs text-slate-300 space-y-1">
+                <li>• Built REST APIs for course, test & trainee management.</li>
+                <li>• Managed SQL schema and query optimization.</li>
+                <li>• Set up CI/CD pipelines via Azure DevOps.</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Experience -->
-    <section id="work" class="container mx-auto px-6 py-12">
-      <h2 class="text-3xl font-bold mb-6">Experience</h2>
+    <!-- PROJECTS -->
+    <section id="projects" class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold mb-1">Selected Projects</h2>
+          <p class="text-xs sm:text-sm text-slate-400">
+            A few projects that showcase my full stack capabilities.
+          </p>
+        </div>
+        <a href="https://github.com/Varun-dev7" target="_blank" class="hidden sm:inline-flex text-xs text-sky-400 hover:text-sky-300">
+          View GitHub <i class="fa-brands fa-github text-sm ml-1"></i>
+        </a>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="p-6 rounded-xl card reveal" data-reveal>
-          <h3 class="font-semibold mb-2">Full Stack Developer — Doctora</h3>
-          <p class="text-sm text-gray-300 mb-3">
-            Built real-time patient-doctor modules using SignalR, designed APIs and improved response times by 25%.
+        <!-- Project 1 -->
+        <article class="sub-card p-4 project reveal" data-reveal>
+          <div class="h-36 rounded-lg mb-3 bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-400 flex items-center justify-center text-4xl text-white">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+          <h3 class="text-sm sm:text-base font-semibold mb-1">Doctora App</h3>
+          <p class="text-xs text-slate-300 mb-2">
+            Healthcare OPD management system with real-time chat, live queue updates and appointment tracking.
           </p>
-          <div class="text-xs text-gray-400">2024 — Present</div>
-        </div>
-        <div class="p-6 rounded-xl card reveal" data-reveal>
-          <h3 class="font-semibold mb-2">Backend Developer — AcademyGo</h3>
-          <p class="text-sm text-gray-300 mb-3">
-            Designed modular backend for e-learning platform, automated deployments and created monitoring dashboards.
+          <div class="flex flex-wrap gap-2 mb-3 text-[0.7rem]">
+            <span class="chip">React</span>
+            <span class="chip">.NET Core</span>
+            <span class="chip">SignalR</span>
+            <span class="chip">SQL</span>
+          </div>
+          <div class="flex flex-wrap gap-3 text-xs">
+            <a href="https://www.doctora.live" target="_blank" class="text-sky-400 hover:text-sky-300 flex items-center gap-1">
+              <i class="fa-solid fa-arrow-up-right-from-square text-[0.65rem]"></i> Live
+            </a>
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-slate-300 hover:text-slate-50 flex items-center gap-1">
+              <i class="fa-brands fa-github text-sm"></i> Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="sub-card p-4 project reveal" data-reveal>
+          <div class="h-36 rounded-lg mb-3 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 flex items-center justify-center text-4xl text-white">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h3 class="text-sm sm:text-base font-semibold mb-1">AcademyGo Backend</h3>
+          <p class="text-xs text-slate-300 mb-2">
+            Backend services for an e-learning platform, including batches, courses, tests, and trainee portals.
           </p>
-          <div class="text-xs text-gray-400">2023 — 2024</div>
-        </div>
+          <div class="flex flex-wrap gap-2 mb-3 text-[0.7rem]">
+            <span class="chip">.NET Core</span>
+            <span class="chip">REST API</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Azure DevOps</span>
+          </div>
+          <div class="flex flex-wrap gap-3 text-xs">
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-slate-300 hover:text-slate-50 flex items-center gap-1">
+              <i class="fa-brands fa-github text-sm"></i> Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="sub-card p-4 project reveal" data-reveal>
+          <div class="h-36 rounded-lg mb-3 bg-gradient-to-r from-emerald-500 via-lime-500 to-yellow-400 flex items-center justify-center text-4xl text-white">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <h3 class="text-sm sm:text-base font-semibold mb-1">Task Manager App</h3>
+          <p class="text-xs text-slate-300 mb-2">
+            Responsive web app for personal and team task management with filters and status tracking.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3 text-[0.7rem]">
+            <span class="chip">React</span>
+            <span class="chip">Tailwind CSS</span>
+            <span class="chip">SPA</span>
+          </div>
+          <div class="flex flex-wrap gap-3 text-xs">
+            <a href="https://github.com/Varun-dev7/react-taskmanager-app" target="_blank" class="text-slate-300 hover:text-slate-50 flex items-center gap-1">
+              <i class="fa-brands fa-github text-sm"></i> Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="sub-card p-4 project reveal" data-reveal>
+          <div class="h-36 rounded-lg mb-3 bg-gradient-to-r from-sky-500 via-blue-500 to-slate-500 flex items-center justify-center text-4xl text-white">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h3 class="text-sm sm:text-base font-semibold mb-1">More Projects & Experiments</h3>
+          <p class="text-xs text-slate-300 mb-2">
+            Smaller utilities, experiments, and open-source contributions that explore new ideas and stacks.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3 text-[0.7rem]">
+            <span class="chip">Open Source</span>
+            <span class="chip">Experiments</span>
+            <span class="chip">Learning</span>
+          </div>
+          <div class="flex flex-wrap gap-3 text-xs">
+            <a href="https://github.com/Varun-dev7" target="_blank" class="text-slate-300 hover:text-slate-50 flex items-center gap-1">
+              <i class="fa-brands fa-github text-sm"></i> GitHub
+            </a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="container mx-auto px-6 py-12">
-      <h2 class="text-3xl font-bold mb-6">Selected Projects</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-user-md"></i>
-          </div>
-          <h3 class="text-xl font-semibold">Doctora App</h3>
-          <p class="text-sm text-gray-300 mb-3">
-            Healthcare OPD management with real-time chat and scheduling.
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 pb-20">
+      <div class="section-card p-6 sm:p-8 grid md:grid-cols-2 gap-8 reveal" data-reveal>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">Let’s work together</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mb-4">
+            I’m open to full-time roles, freelance work, and interesting collaborations.
+            The best way to reach me is by email or LinkedIn.
           </p>
-          <div class="flex gap-3">
-            <a href="https://www.doctora.live" target="_blank" class="text-indigo-300 under">Live</a>
-            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">Code</a>
-          </div>
-        </article>
-
-        <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3 class="text-xl font-semibold">AcademyGo</h3>
-          <p class="text-sm text-gray-300 mb-3">
-            E-learning backend services and administration portal.
-          </p>
-          <div class="flex gap-3">
-            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">Code</a>
-          </div>
-        </article>
-
-        <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-green-600 to-yellow-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-tasks"></i>
-          </div>
-          <h3 class="text-xl font-semibold">Task Manager App</h3>
-          <p class="text-sm text-gray-300 mb-3">
-            Responsive task tracker with collaboration features.
-          </p>
-          <div class="flex gap-3">
-            <a href="https://github.com/Varun-dev7/react-taskmanager-app" target="_blank" class="text-indigo-300 under">Code</a>
-          </div>
-        </article>
-
-        <article class="p-6 rounded-2xl card project reveal" data-reveal>
-          <div class="h-44 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl mb-4 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3 class="text-xl font-semibold">Other Contributions</h3>
-          <p class="text-sm text-gray-300 mb-3">
-            Open-source contributions and utilities — view on GitHub.
-          </p>
-          <div class="flex gap-3">
-            <a href="https://github.com/Varun-dev7" target="_blank" class="text-indigo-300 under">GitHub</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="container mx-auto px-6 py-12">
-      <h2 class="text-3xl font-bold mb-6">Let's build something great</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="card p-6 rounded-xl reveal" data-reveal>
-          <h3 class="font-semibold mb-3">Contact</h3>
-          <p class="text-gray-300 mb-4">
-            Email:
-            <a href="mailto:varungupta00v7@gmail.com" class="text-indigo-300">
-              varungupta00v7@gmail.com
-            </a><br/>
-            Phone: +91-8303843172
-          </p>
-          <div class="flex gap-3">
-            <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="btn btn-ghost">LinkedIn</a>
-            <a href="https://github.com/Varun-dev7" target="_blank" class="btn btn-ghost">GitHub</a>
+          <div class="space-y-3 text-xs sm:text-sm text-slate-200">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center border border-slate-700">
+                <i class="fa-regular fa-envelope text-sm text-sky-400"></i>
+              </div>
+              <div>
+                <div class="text-slate-400">Email</div>
+                <a href="mailto:varungupta00v7@gmail.com" class="text-sky-400 hover:text-sky-300 break-all">
+                  varungupta00v7@gmail.com
+                </a>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center border border-slate-700">
+                <i class="fa-solid fa-phone text-sm text-emerald-400"></i>
+              </div>
+              <div>
+                <div class="text-slate-400">Phone</div>
+                <span>+91-8303843172</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center border border-slate-700">
+                <i class="fa-brands fa-linkedin-in text-sm text-sky-400"></i>
+              </div>
+              <div>
+                <div class="text-slate-400">LinkedIn</div>
+                <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="text-sky-400 hover:text-sky-300 break-all">
+                  linkedin.com/in/varun-gupta-a272a8346
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <form class="card p-6 rounded-xl reveal"
-              data-reveal
-              onsubmit="event.preventDefault(); alert('Thanks — message simulated (static demo).');">
-          <label class="block mb-2 text-sm">Name</label>
-          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700"
-                 placeholder="Your name" required />
-          <label class="block mb-2 text-sm">Email</label>
-          <input class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700"
-                 placeholder="you@domain.com" type="email" required />
-          <label class="block mb-2 text-sm">Message</label>
-          <textarea class="w-full mb-3 p-3 rounded-lg bg-transparent border border-gray-700"
-                    rows="4" placeholder="How can I help?" required></textarea>
-          <button class="w-full py-3 rounded-lg btn btn-cta">
+        <form class="sub-card p-4 sm:p-5 text-xs sm:text-sm"
+              onsubmit="event.preventDefault(); alert('Thanks, your message has been captured in this demo!');">
+          <div class="mb-3">
+            <label class="block mb-1 text-slate-300">Name</label>
+            <input type="text" required
+                   class="w-full px-3 py-2 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500"
+                   placeholder="Your name" />
+          </div>
+          <div class="mb-3">
+            <label class="block mb-1 text-slate-300">Email</label>
+            <input type="email" required
+                   class="w-full px-3 py-2 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500"
+                   placeholder="you@example.com" />
+          </div>
+          <div class="mb-3">
+            <label class="block mb-1 text-slate-300">Project / Message</label>
+            <textarea rows="4" required
+                      class="w-full px-3 py-2 rounded-md bg-slate-900 border border-slate-700 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500"
+                      placeholder="Briefly describe what you’re looking to build..."></textarea>
+          </div>
+          <button type="submit" class="w-full btn-primary justify-center">
             Send Message
           </button>
         </form>
@@ -534,35 +696,42 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="py-8">
-    <div class="container mx-auto px-6 text-center text-sm text-gray-400">
-      © 2025 Varun Gupta · Built with care ·
-      <a href="#home" class="text-indigo-300 hover:underline">Back to top</a>
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800 bg-slate-950/70 py-4">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[0.7rem] text-slate-500">
+      <div>© 2025 Varun Gupta. Built with care.</div>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/Varun-dev7" target="_blank" class="footer-link flex items-center gap-1">
+          <i class="fa-brands fa-github"></i><span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/in/varun-gupta-a272a8346" target="_blank" class="footer-link flex items-center gap-1">
+          <i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span>
+        </a>
+        <a href="#home" class="footer-link flex items-center gap-1">
+          <i class="fa-solid fa-arrow-up text-[0.6rem]"></i><span>Back to top</span>
+        </a>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Smooth nav scrolling & active link
-    const links = document.querySelectorAll(".nav-link");
-
-    function setActive(target) {
-      links.forEach((l) => l.classList.remove("active"));
-      document
-        .querySelectorAll(".nav-link[data-target='" + target + "']")
-        .forEach((el) => el.classList.add("active"));
+    // Helper: set active nav
+    const navLinks = document.querySelectorAll(".nav-link");
+    function setActive(targetId) {
+      navLinks.forEach(l => l.classList.remove("active"));
+      document.querySelectorAll(".nav-link[data-target='" + targetId + "']")
+              .forEach(el => el.classList.add("active"));
     }
 
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const target = link.getAttribute("data-target");
-        if (!target) return;
+    // Smooth scroll & nav active
+    navLinks.forEach(link => {
+      const target = link.getAttribute("data-target");
+      if (!target) return;
 
-        // For nav links, prevent default and do smooth scroll
-        e.preventDefault();
+      link.addEventListener("click", (e) => {
         const el = document.getElementById(target);
         if (!el) return;
-
+        e.preventDefault();
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         setActive(target);
         toggleMobile(false);
@@ -570,88 +739,64 @@
     });
 
     // Mobile menu toggle
-    const mobileToggleBtn = document.getElementById("mobileToggle");
-    const mobilePanel = document.getElementById("mobileMenu");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const mobileMenu   = document.getElementById("mobileMenu");
 
-    function toggleMobile(open) {
-      const isOpen = mobilePanel.style.display === "block";
-      const want = open === undefined ? !isOpen : open;
-
-      if (want) {
-        mobilePanel.style.display = "block";
-        requestAnimationFrame(() => {
-          mobilePanel.style.opacity = "1";
-          mobilePanel.style.transform = "translateY(0)";
-        });
-        mobileToggleBtn.setAttribute("aria-expanded", "true");
+    function toggleMobile(force) {
+      const isOpen = mobileMenu.style.display === "block";
+      const open = typeof force === "boolean" ? force : !isOpen;
+      if (open) {
+        mobileMenu.style.display = "block";
+        mobileToggle.setAttribute("aria-expanded", "true");
       } else {
-        mobilePanel.style.opacity = "0";
-        mobilePanel.style.transform = "translateY(-6px)";
-        mobileToggleBtn.setAttribute("aria-expanded", "false");
-        setTimeout(() => (mobilePanel.style.display = "none"), 220);
+        mobileMenu.style.display = "none";
+        mobileToggle.setAttribute("aria-expanded", "false");
       }
     }
 
-    if (mobileToggleBtn) {
-      mobileToggleBtn.addEventListener("click", () => toggleMobile());
+    if (mobileToggle) {
+      mobileToggle.addEventListener("click", () => toggleMobile());
     }
 
-    // Header shrink on scroll
-    const header = document.getElementById("siteHeader");
-    const hero = document.getElementById("home");
-
-    if (header && hero) {
-      const headerObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (!e.isIntersecting) {
-              header.classList.add("scrolled");
-            } else {
-              header.classList.remove("scrolled");
-            }
-          });
-        },
-        { root: null, threshold: 0, rootMargin: "-80px 0px 0px 0px" }
-      );
-
-      headerObserver.observe(hero);
-    }
+    // Header compact on scroll
+    const header = document.getElementById("header");
+    const onScrollHeader = () => {
+      if (window.scrollY > 40) {
+        header.classList.add("compact");
+      } else {
+        header.classList.remove("compact");
+      }
+    };
+    window.addEventListener("scroll", onScrollHeader);
+    onScrollHeader();
 
     // Reveal on scroll
-    const reveals = document.querySelectorAll("[data-reveal]");
-    const revObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
 
-    reveals.forEach((r) => revObserver.observe(r));
-
-    // Project hover tilt subtle
-    document.querySelectorAll(".project").forEach((card) => {
+    // Project tilt
+    document.querySelectorAll(".project").forEach(card => {
       card.addEventListener("mousemove", (e) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
         card.style.transform =
-          "perspective(900px) rotateX(" +
-          -y * 4 +
-          "deg) rotateY(" +
-          x * 5 +
-          "deg) translateY(-6px)";
+          "perspective(900px) rotateX(" + (y * -6) + "deg) rotateY(" + (x * 8) + "deg)";
       });
       card.addEventListener("mouseleave", () => {
-        card.style.transform = "none";
+        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
       });
     });
 
-    // Init first active link
+    // Initial active
     setActive("home");
   </script>
 </body>
