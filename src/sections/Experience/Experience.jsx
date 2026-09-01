@@ -1,13 +1,56 @@
 import { motion } from 'framer-motion'
 import { experiences } from '../../data/experience'
 import ExperienceItem from './ExperienceItem'
+import backgroundVideo from '../../assets/videos/background.mp4'
 
 function Experience() {
   return (
     <section id="experience" className="relative py-[var(--section-padding)] overflow-hidden scroll-mt-20">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--color-accent)]/3 rounded-full blur-[120px]" />
+      {/* ============================= BACKGROUND ============================= */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
+        {/* Animated background video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+
+        {/* Dark cinematic overlay */}
+        <div className="absolute inset-0 bg-[var(--color-bg)]/25" />
+
+        {/* Accent atmosphere */}
+        <div
+          className="
+      absolute
+      left-1/2
+      top-0
+      h-[500px]
+      w-[700px]
+      -translate-x-1/2
+      rounded-full
+      bg-[var(--color-accent)]/[0.06]
+      blur-[140px]
+    "
+        />
+
+        {/* Bottom fade */}
+        <div
+          className="
+      absolute
+      inset-x-0
+      bottom-0
+      h-40
+      bg-gradient-to-t
+      from-[var(--color-bg)]
+      to-transparent
+    "
+        />
       </div>
 
       <div className="container relative z-10">
@@ -81,11 +124,10 @@ function Experience() {
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.2 + 0.3, duration: 0.4 }}
-                      className={`w-2.5 h-2.5 rounded-full border-2 z-10 ${
-                        experience.current
+                      className={`w-2.5 h-2.5 rounded-full border-2 z-10 ${experience.current
                           ? 'bg-[var(--color-accent)] border-[var(--color-accent)]'
                           : 'bg-[var(--color-bg-secondary)] border-[var(--color-border)]'
-                      }`}
+                        }`}
                     />
                   </div>
                 ))}
