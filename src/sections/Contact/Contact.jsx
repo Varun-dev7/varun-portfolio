@@ -68,7 +68,7 @@ function Contact() {
             >
               <a
                 href={emailHref}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-text)] text-[var(--color-bg)] text-sm font-medium rounded-full hover:bg-[var(--color-text-secondary)] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-400 text-[#08090B] text-sm font-medium rounded-full hover:bg-white/90 transition-all duration-300"
               >
                 <Mail size={16} />
                 Send an Email

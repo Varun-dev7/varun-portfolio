@@ -187,7 +187,7 @@ function Hero() {
 
               <a
                 href="/#contact"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-7 text-sm font-medium text-[#F7F4EE] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#FFB37A]/40 hover:bg-[#FFB37A]/[0.06]"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/[0.03] px-7 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/50 hover:bg-white/[0.08]"
               >
                 Let's Work Together
               </a>
