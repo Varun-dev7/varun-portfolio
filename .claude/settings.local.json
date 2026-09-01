@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node -e \"const lucide = require\\('lucide-react'\\); console.log\\(Object.keys\\(lucide\\).filter\\(k => k.toLowerCase\\(\\).includes\\('github'\\)\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"import\\('lucide-react'\\).then\\(m => console.log\\(Object.keys\\(m\\).filter\\(k => /git/i.test\\(k\\)\\).join\\('\\\\n'\\)\\)\\)\")",
+      "Bash(node -e \"import\\('lucide-react'\\).then\\(m => console.log\\(Object.keys\\(m\\).filter\\(k => /hub|social|link/i.test\\(k\\)\\).join\\('\\\\n'\\)\\)\\)\")",
+      "Bash(powershell -NoProfile -Command \"Get-ChildItem C:\\\\Users\\\\anand\\\\OneDrive\\\\Desktop\\\\projects\\\\Varun-Portfolio\\\\varun-portfolio -Recurse -Filter 'ProjectDetails*' -ErrorAction SilentlyContinue | Select-Object FullName\")",
+      "PowerShell(cd \"C:\\\\Users\\\\anand\\\\OneDrive\\\\Desktop\\\\projects\\\\Varun-Portfolio\\\\varun-portfolio\"; Get-ChildItem src/assets/images -File | ForEach-Object { [PSCustomObject]@{ Name=$_.Name; SizeKB=[math]::Round\\($_.Length/1KB,1\\); Width=$\\(\\(Get-Image $_.FullName\\).Width\\); Height=$\\(\\(Get-Image $_.FullName\\).Height\\) } } | Format-Table -AutoSize)",
+      "Bash(npm list *)",
+      "Bash(where magick *)",
+      "Bash(where convert *)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; Get-ChildItem \"C:\\\\Users\\\\anand\\\\OneDrive\\\\Desktop\\\\projects\\\\Varun-Portfolio\\\\varun-portfolio\\\\src\\\\assets\\\\images\" -File | ForEach-Object { $img = [System.Drawing.Image]::FromFile\\($_.FullName\\); [PSCustomObject]@{ Name=$_.Name; SizeKB=[math]::Round\\($_.Length/1KB,1\\); Width=$img.Width; Height=$img.Height; Format=$img.RawFormat }; $img.Dispose\\(\\) } | Format-Table -AutoSize)",
+      "Bash(grep -oP 'image:`\\\\K[^`]+' dist/assets/projects-C55WEq9g.js)",
+      "Bash(npx vite *)",
+      "Bash(curl -s http://localhost:4173/assets/Doctora-Crt_1w10.png)",
+      "Bash(cd *)",
+      "Bash(curl -s http://localhost:5175/)",
+      "Bash(curl -sI http://localhost:4174/)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'http://localhost:4173/assets/Task-manager-8Mc2aByi.png' -Method Head -UseBasicParsing | Select-Object StatusCode, ContentLength\")",
+      "Bash(curl --max-time 5 http://localhost:5175/)",
+      "Bash(Get-ChildItem -Path \"dist\" -Recurse -File)",
+      "Bash(Select-Object FullName)",
+      "Bash(curl *)",
+      "Bash(grep -E \"\\\\.png$\")",
+      "Bash(wc *)",
+      "Bash(node -e \"const ri = require\\('react-icons'\\); const keys = Object.keys\\(ri\\).filter\\(k => k.startsWith\\('Si'\\)\\); console.log\\(keys.slice\\(0,200\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(node --input-type=module -e \"import * as ri from 'react-icons'; console.log\\(Object.keys\\(ri\\).filter\\(k => k.startsWith\\('Si'\\)\\).slice\\(0,300\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"import\\('react-icons'\\).then\\(m => { const keys = Object.keys\\(m\\); console.log\\(keys.filter\\(k => k.startsWith\\('Si'\\)\\).slice\\(0,300\\).join\\('\\\\n'\\)\\); }\\)\")",
+      "Bash(node check-icons.mjs)",
+      "Bash(node -e \"import\\('react-icons'\\).then\\(m => console.log\\(Object.keys\\(m\\).slice\\(0,50\\).join\\('\\\\n'\\)\\)\\)\")",
+      "Bash(npm ls *)",
+      "Bash(node -e \"const si = require\\('react-icons/si'\\); console.log\\(Object.keys\\(si\\).filter\\(k => !k.startsWith\\('_'\\)\\).length\\)\")"
+    ]
+  }
+}
