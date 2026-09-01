@@ -3,12 +3,14 @@ import Navbar from '../navigation/Navbar'
 import Footer from './Footer'
 import CosmicBackground from '../animations/CosmicBackground'
 import CustomCursor from '../ui/CustomCursor'
+import ThemePicker from '../ui/ThemePicker'
 
 function Layout() {
   return (
     <div className="min-h-screen bg-[var(--color-bg)] grain">
       <CosmicBackground intensity="low" />
       <CustomCursor />
+      <ThemePicker />
 
       {/* Skip to main content — accessibility */}
       <a

@@ -179,7 +179,7 @@ function Hero() {
             >
               <a
                 href="/#projects"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#F7F4EE] px-7 text-sm font-semibold text-[#08090B] shadow-[0_12px_45px_rgba(255,255,255,0.08)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_55px_rgba(255,180,120,0.16)]"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-7 text-sm font-semibold text-[var(--color-bg)] shadow-[0_12px_45px_rgba(212,149,106,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_55px_rgba(212,149,106,0.25)]"
               >
                 View My Work
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
