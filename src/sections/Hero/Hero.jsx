@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { profile } from '../../data/profile'
 import HeroVisual from './HeroVisual'
+import VisitorCounter from '../../components/ui/VisitorCounter'
 
 function Hero() {
   const reducedMotion = useReducedMotion()
@@ -200,6 +201,16 @@ function Hero() {
               style={{ transformOrigin: 'left' }}
               className="mx-auto mt-11 h-px max-w-[520px] bg-gradient-to-r from-white/10 via-white/5 to-transparent lg:mx-0"
             />
+
+            {/* Visitor Counter — below the divider, aligned left */}
+            <motion.div
+              initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={reducedMotion ? { duration: 0 } : { duration: 0.7, delay: 0.65 }}
+              className="mt-8 lg:mt-9"
+            >
+              <VisitorCounter />
+            </motion.div>
           </div>
 
           {/* RIGHT — VISUAL */}
