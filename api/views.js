@@ -14,17 +14,30 @@
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 
-// ─── Redis & Rate-limiter (gracefully handle missing credentials) ─────────────
+// ─── Diagnostic helpers ─────────────────────────────────────────────────────
 
-const redis =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-    ? new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
-      })
-    : null
+function log(...args) {
+  // Only logs to Vercel Runtime Logs in production
+  console.log('[api/views]', ...args)
+}
 
-// One increment per IP per 10 minutes (sliding window)
+function logError(...args) {
+  // Always logs — Vercel captures these in Runtime Logs
+  console.error('[api/views ERROR]', ...args)
+}
+
+// ─── Redis & Rate-limiter ───────────────────────────────────────────────────
+
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN
+
+log('Env check — UPSTASH_REDIS_REST_URL set:', !!redisUrl)
+log('Env check — UPSTASH_REDIS_REST_TOKEN set:', !!redisToken)
+
+const redis = redisUrl && redisToken
+  ? new Redis({ url: redisUrl, token: redisToken })
+  : null
+
 const ratelimit = redis
   ? new Ratelimit({
       redis,
@@ -61,7 +74,6 @@ function getVisitorId(request) {
 // ─── GET handler ────────────────────────────────────────────────────────────
 
 export async function GET(request) {
-  // CORS headers for cross-origin requests
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -70,39 +82,71 @@ export async function GET(request) {
     'Cache-Control': 'no-store, max-age=0',
   }
 
-  // Return 0 gracefully if Redis is not configured
-  if (!redis || !ratelimit) {
-    return new Response(JSON.stringify({ views: 0, error: 'Redis not configured' }), {
-      status: 200,
-      headers,
-    })
+  // ── Check 1: Redis credentials present ──────────────────────────────────
+  if (!redisUrl || !redisToken) {
+    logError('REDIS NOT CONFIGURED — env vars missing')
+    logError('UPSTASH_REDIS_REST_URL:', redisUrl ? 'SET' : 'MISSING')
+    logError('UPSTASH_REDIS_REST_TOKEN:', redisToken ? 'SET' : 'MISSING')
+    return new Response(
+      JSON.stringify({ views: 0, error: 'Redis not configured — missing environment variables' }),
+      { status: 503, headers }
+    )
   }
 
+  if (!redis) {
+    logError('REDIS CLIENT FAILED TO INITIALIZE despite credentials')
+    return new Response(
+      JSON.stringify({ views: 0, error: 'Redis client failed to initialize' }),
+      { status: 503, headers }
+    )
+  }
+
+  if (!ratelimit) {
+    logError('RATELIMITER FAILED TO INITIALIZE')
+    return new Response(
+      JSON.stringify({ views: 0, error: 'Rate-limiter failed to initialize' }),
+      { status: 503, headers }
+    )
+  }
+
+  // ── Check 2: Redis connectivity ─────────────────────────────────────────
+  try {
+    const pong = await redis.ping()
+    log('Redis ping:', pong)
+  } catch (pingErr) {
+    logError('Redis ping FAILED:', pingErr.message)
+    return new Response(
+      JSON.stringify({ views: 0, error: 'Redis connection failed' }),
+      { status: 503, headers }
+    )
+  }
+
+  // ── Check 3: Rate-limit + increment ─────────────────────────────────────
   try {
     const visitorId = getVisitorId(request)
+    log('Visitor ID:', visitorId)
 
-    // Check rate limit — determines if this visitor gets counted
     const { success } = await ratelimit.limit(visitorId)
+    log('Rate-limit result — allowed:', success)
 
     let views = 0
 
     if (success) {
-      // Increment the global counter
       views = await redis.incr(VIEWS_KEY)
+      log('Incremented portfolio:views to:', views)
     } else {
-      // Still return current count, just don't increment
       const current = await redis.get(VIEWS_KEY)
       views = typeof current === 'number' ? current : 0
+      log('Rate-limited — returning current count:', views)
     }
 
     return new Response(JSON.stringify({ views }), { status: 200, headers })
   } catch (err) {
-    console.error('[api/views] Redis error:', err)
-    // Fail gracefully — don't crash the page
-    return new Response(JSON.stringify({ views: 0, error: 'Service temporarily unavailable' }), {
-      status: 200,
-      headers,
-    })
+    logError('Redis operation FAILED:', err.message)
+    return new Response(
+      JSON.stringify({ views: 0, error: `Redis operation failed: ${err.message}` }),
+      { status: 503, headers }
+    )
   }
 }
 
