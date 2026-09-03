@@ -30,12 +30,67 @@ export const projects = [
       "Android application contribution",
     ],
     image: "/images/projects/Doctora.png",
+    images: [
+      "/images/projects/Doctora.png",
+    ],
     video: null,
     github: null,
-    live: null,
-    playStore: null,
+    live: "https://www.doctora.live/",
+    playStore: "https://play.google.com/store/apps/details?id=live.doctora.app&pcampaignid=web_share",
     featured: true,
     year: 2024,
+    // Case Study Content
+    overview:
+      "Doctora is a real-time OPD and clinic queue management platform designed to digitize patient registration, appointment booking, doctor discovery, and clinic queue workflows. The platform supports web and Android experiences and provides synchronized dashboards for doctors, reception staff, and display screens.",
+    problem:
+      "Traditional clinic OPD workflows rely on manual patient registration and token-based processes. This can make registration, queue coordination, appointment handling, and communication between clinic screens difficult to manage efficiently.",
+    solution:
+      "Doctora digitizes the entire OPD workflow through digital patient registration, doctor discovery, appointment booking, QR-based registration with unique reference numbers, and real-time queue synchronization across dedicated dashboards for doctors, reception staff, and display screens.",
+    keyFeatures: [
+      {
+        title: "Doctor Discovery",
+        description: "Doctors can be discovered by state and city with detailed profiles and specializations."
+      },
+      {
+        title: "Appointment Booking",
+        description: "Real-time appointment booking with live availability checks and instant confirmations."
+      },
+      {
+        title: "QR Patient Registration",
+        description: "QR-based patient registration generates unique reference numbers for faster verification."
+      },
+      {
+        title: "Real-Time Queue",
+        description: "SignalR keeps queue information synchronized across all screens and user roles."
+      },
+      {
+        title: "Doctor Dashboard",
+        description: "Dedicated dashboard for doctors to manage their queue and patient appointments."
+      },
+      {
+        title: "Reception Dashboard",
+        description: "Reception staff can manage patient registration and queue workflows efficiently."
+      },
+      {
+        title: "Display Dashboard",
+        description: "Synchronized display screens show live queue updates for patients."
+      },
+      {
+        title: "Web + Android",
+        description: "Responsive web application with Android app published on Google Play Store."
+      }
+    ],
+    technicalImplementation: {
+      frontend: "React.js",
+      backend: "ASP.NET Core",
+      language: "C#",
+      database: "MySQL",
+      realtime: "SignalR",
+      api: "REST APIs"
+    },
+    realtimeArchitecture:
+      "SignalR was used to synchronize Doctor, Reception, and Display dashboards so queue changes are reflected across all screens in real time. This enables instant updates when a patient is registered, queue position changes, or an appointment is completed.",
+    platforms: ["Web", "Android"]
   },
   {
     id: "project-02",
